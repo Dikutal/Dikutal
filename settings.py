@@ -100,7 +100,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'dikutal.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = ('C:/Users/Sebastian/Dropbox/code/python/dikutal/templates',)
 
@@ -116,6 +116,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'dikutal',
+    'news',
 )
 
 # A sample logging configuration. The only tangible logging
