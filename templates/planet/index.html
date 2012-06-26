@@ -1,12 +1,19 @@
 {% extends "master.html" %}
 
 {% block content %}
+
+<p>All times are in Denmark time (GMT + 01:00, i.e. UTC + 02:00 if DST, and UTC
+  + 01:00 if not DST).</p>
+
 {% for article in articles %}
-<h1>{{ article.title }}</h1>
+<h1><a href='{{ article.url }}'>{{ article.title }}</a></h1>
+<h2>{{ article.updated_formatted }}</h2>
+<div class='feed_article'>
 {{ article.html|safe }}
+</div>
 {% endfor %}
 {% if not articles %}
-    <p>No articles.</p>
+<p>No articles.</p>
 {% endif %}
 {% endblock content %}
 

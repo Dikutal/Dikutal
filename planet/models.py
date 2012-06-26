@@ -10,5 +10,9 @@ class Feed(models.Model):
         return self.url
 
 class FeedAdmin(admin.ModelAdmin):
-    pass
+    fieldsets = (
+        (None, {
+            'fields': ('url',)
+        }),
+        )
 
