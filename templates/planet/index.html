@@ -1,0 +1,11 @@
+{% extends "master.html" %}
+
+{% block content %}
+{% for article in articles %}
+<p>{{ article.title }}</p>
+{% endfor %}
+{% if not articles %}
+    <p>No articles.</p>
+{% endif %}
+{% endblock content %}
+
