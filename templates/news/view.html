@@ -1,9 +1,14 @@
+{% extends "master.html" %}
+
 {% load markup %}
 {% load comments %}
+
+{% block head_extra %}
 <link rel="canonical" href="{{ article.url }}">
+{% endblock head_extra %}
 
-
-<h1>{{ article.title }}</h1>
+{% block content %}
+<h2>{{ article.title }}</h2>
 <div id="pubdate">{{ article.published }}</div>
 
 <div id="teaser">{{ article.teaser|markdown }}</div>
@@ -19,3 +24,4 @@
 {% render_comment_form for article %}
 
 </div>
+{% endblock content %}
