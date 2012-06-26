@@ -16,7 +16,7 @@ class Article(models.Model):
 
     @models.permalink
     def url(self):
-        return ('news.views.view', (), {
+        return ('news.views.article_view', (), {
             'id': self.id,
             'slug': self.slug})
 
