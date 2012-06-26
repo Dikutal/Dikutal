@@ -16,5 +16,7 @@ urlpatterns = patterns('',
 
     url(r'^website/', include('website.urls')),
     url(r'^jobs/', include('jobs.urls')),
-    url(r'^news/', include('news.urls')),
+    url(r'^news/', include('news.news_urls')),
+    url(r'^articles/', include('news.article_urls')),
+    url(r'^planet/', include('planet.urls')),
 )
