@@ -11,7 +11,6 @@ class Article(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField()
 
-
     def __unicode__(self):
         return self.title
 
@@ -21,8 +20,18 @@ class ArticleAdmin(admin.ModelAdmin):
 
 
 class NewsArticle(Article):
-    pass
+    event_date = models.DateField(null=True)
+    event_location = models.CharField(max_length=100, null=True)
 
 
 class NewsArticleAdmin(ArticleAdmin):
-    pass
+    fieldsets = (
+        (None, {
+            'fields': ('title', 'teaser', 'content', 'published', 'slug')
+        }),
+        ('Event details', {
+            'classes': ('collapse', ),
+            'description': 'Articles with an event date will be showed in the calendar.',
+            'fields': ('event_date', 'event_location')
+        }),
+    )
