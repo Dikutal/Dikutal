@@ -1,1 +1,8 @@
-News index.
+{% if latest %}
+    {% for article in latest %}
+    <h1><a href='{{ article.url }}'>{{ article.title }}</a></h1>
+    <div class='teaser'>{{ article.teaser }}</div>
+    {% endfor %}
+{% else %}
+    <p>No articles.</p>
+{% endif %}

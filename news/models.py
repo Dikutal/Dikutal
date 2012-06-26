@@ -14,6 +14,12 @@ class Article(models.Model):
     def __unicode__(self):
         return self.title
 
+    @models.permalink
+    def url(self):
+        return ('news.views.view', (), {
+            'id': self.id,
+            'slug': self.slug})
+
 
 class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
