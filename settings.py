@@ -102,7 +102,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'urls'
 
-TEMPLATE_DIRS = ('C:/Users/Sebastian/Dropbox/code/python/dikutal/templates',)
+TEMPLATE_DIRS = ('./templates',)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
