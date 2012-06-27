@@ -8,6 +8,22 @@
     <h2><a href='{{ article.url }}'>{{ article.title }}</a></h2>
     <div class='teaser'>{{ article.teaser|markdown }}</div>
     {% endfor %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if latest.has_previous %}
+                <a href="?page={{ latest.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ latest.number }} of {{ latest.paginator.num_pages }}
+            </span>
+
+            {% if latest.has_next %}
+                <a href="?page={{ latest.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
 {% else %}
     <p>No articles.</p>
 {% endif %}
