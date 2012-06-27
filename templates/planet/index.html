@@ -1,15 +1,16 @@
 {% extends "master.html" %}
 
 {% block content %}
-
-<p>All times are in Denmark time (GMT + 01:00, i.e. UTC + 02:00 if DST, and UTC
-  + 01:00 if not DST).</p>
+<p>All times are converted to Denmark time: UTC + 02:00 when DST, and UTC +
+  01:00 when not DST.</p>
 
 {% for article in articles %}
-<h1><a href='{{ article.url }}'>{{ article.title }}</a></h1>
-<h2>{{ article.updated_formatted }}</h2>
-<div class='feed_article'>
-{{ article.html|safe }}
+<div class='planetarticle'>
+  <h1><a href='{{ article.url }}'>{{ article.title }}</a></h1>
+  <h2>{{ article.updated_formatted }}</h2>
+  <div>
+    {{ article.html|safe }}
+  </div>
 </div>
 {% endfor %}
 {% if not articles %}
