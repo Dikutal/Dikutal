@@ -1,15 +1,17 @@
 from django.db import models
 from django.contrib import admin
+from django.contrib.auth.models import User
 
 class Article(models.Model):
     title = models.CharField(max_length=300)
     teaser = models.TextField()
     content = models.TextField()
-    #author = models.ForeignKey(User, related_name='%(class)ss')
-    published = models.DateTimeField()
+    author = models.ForeignKey(User, related_name='%(class)ss') # TODO: integrate with OSQA
+    published = models.DateTimeField(blank=True, null=True)
     last_edited = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField()
+    image = models.ImageField(upload_to='uploads')
 
     def __unicode__(self):
         return self.title

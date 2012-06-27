@@ -8,14 +8,25 @@
 {% endblock head_extra %}
 
 {% block content %}
-<h2>{{ article.title }}</h2>
-<div id="pubdate">{{ article.published }}</div>
+<article>
+    <header>
+        <h2>{{ article.title }}</h2>
+    </header>
 
-<div id="teaser">{{ article.teaser|markdown }}</div>
+    <p>
+        By <span class="author">{{ article.author.get_full_name }}</span> on
+        <time datetime="{{ article.published.isoformat }}" pubdate="pubdate">{{ article.published }}</time>
+    </p>
 
-<div id="content">{{ article.content|markdown }}</div>
+    <figure class="image"><img src="{{ article.image.url }}"></figure>
 
-<div id="comment_container">
+    <section id="teaser">{{ article.teaser|markdown }}</section>
+
+    <section id="content">{{ article.content|markdown }}</section>
+
+</article>
+
+<section id="comment_container">
 
 {% get_comment_count for article as comment_count %}
 <p>{{ comment_count }} comments have been posted.</p>
@@ -23,5 +34,5 @@
 {% render_comment_list for article %}
 {% render_comment_form for article %}
 
-</div>
+</section>
 {% endblock content %}

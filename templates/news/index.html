@@ -5,11 +5,20 @@
 {% block content %}
 {% if latest %}
     {% for article in latest %}
-    <h2><a href='{{ article.url }}'>{{ article.title }}</a></h2>
-    <div class='teaser'>{{ article.teaser|markdown }}</div>
+    <article id="a{{ article.id}}">
+        <header>
+            <h2><a href='{{ article.url }}'>{{ article.title }}</a></h2>
+        </header>
+
+        <time datetime="{{ article.published.isoformat }}" pubdate="pubdate">{{ article.published }}</time>
+
+        <figure class="image"><img src="{{ article.image.url }}"></figure>
+
+        <section class='teaser'>{{ article.teaser|markdown }}</section>
+    </article>
     {% endfor %}
 
-    <div class="pagination">
+    <nav class="pagination">
         <span class="step-links">
             {% if latest.has_previous %}
                 <a href="?page={{ latest.previous_page_number }}">previous</a>
@@ -23,7 +32,7 @@
                 <a href="?page={{ latest.next_page_number }}">next</a>
             {% endif %}
         </span>
-    </div>
+    </nav>
 {% else %}
     <p>No articles.</p>
 {% endif %}
