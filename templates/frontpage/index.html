@@ -1,31 +1,47 @@
 {% extends "master.html" %}
 
+<!-- Use a wide bounding block for the front page -->
+{% block wide %}wide{% endblock wide %}
+
 {% block content %}
-Awesome frontpage.
 
-<div id="sidebar">
-
+<div style="float:left; width: 580px;">
     {% if latest_articles %}
     <section>
-        <h2>Latest articles</h2>
+        <h1>Dikutal</h1>
 
-        <ol>
+        <div>
             {% for article in latest_articles %}
-            <li><a href='{{ article.url }}'>{{ article.title }}</a></li>
+            <a href='{{ article.url }}'><h2>{{ article.title }}</h2></a>
             {% endfor %}
-        </ol>
+        </div>
     </section>
     {% endif %}
+</div>
+
+<div id="sidebar">
+  
+  <section  id="qabox" class="box">
+    <h3><span class="mpics">?</span> Latest Questions</h3>
+    <ol>
+      <li><a href="http://qa.dikutal.dk/questions/695/">How do I set up Emacs for editing LaTeX?</a> <span class="smalldate">18.&nbsp;Oct.&nbsp;2012</span></li>
+      <li><a href="http://qa.dikutal.dk/questions/105/">What are the closest places to get food?</a> <span class="smalldate">3.&nbsp;Oct.&nbsp;2012</span></li>
+      <li><a href="http://qa.dikutal.dk/questions/28/">How do I print on DIKUs printers from my Mac OS X laptop?</a> <span class="smalldate">1.&nbsp;Oct.&nbsp;2012</span></li>
+      <li><a href="http://qa.dikutal.dk/questions/667/">How do I contact the students of DIKU?</a> <span class="smalldate">21.&nbsp;Sep.&nbsp;2012</span></li>
+    </ol>
+    <div class="additional"> <a href="http://qa.dikutal.dk/">More questions »</a></div>
+  </section>
+
 
     {% if latest_jobs %}
-    <section>
-        <h2>Latest jobs</h2>
-
-        <ul>
+    <section id="jobbox" class="box">
+      <h3><span class="mpics">$</span> Latest Jobs</h3>
+        <ol>
         {% for job in latest_jobs %}
-            <li><a href="/jobs/{{ job.id }}/">{{ job.title }}</a></li>
+            <li><a href="/jobs/{{ job.id }}/">{{ job.title }}</a> <span class="smalldate">{{ job.published|date:"d. M Y" }}</span></li>
         {% endfor %}
-        </ul>
+        </ol>
+        <div class="additional"> <a href="/jobs">More jobs »</a></div>
     </section>
     {% endif %}
 </div>
