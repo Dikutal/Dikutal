@@ -23,7 +23,8 @@
     </ol>
   </div>
 
-<div id="bounding-normal">
+  <!-- We wan't certain pages to be able to change this to "wide" -->
+<div id="bounding-{% block wide %}normal{% endblock wide %}">
 
 {% block content %}{% endblock content %}
 
