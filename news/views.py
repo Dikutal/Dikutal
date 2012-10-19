@@ -8,10 +8,10 @@ from news.forms import ArticleForm
 
 from news.models import Article
 
-import datetime
+from datetime import datetime
 
 def index(model, request):
-    articles = model.objects.filter(published__lt=datetime.datetime.now()).order_by('-published')
+    articles = model.objects.filter(published__lt=datetime.now()).order_by('-published')
     paginator = Paginator(articles, 10)
 
     page = request.GET.get('page')
@@ -39,7 +39,7 @@ def news_create(request):
         if form.is_valid():
             article = form.save(commit=False)
             article.author = request.user
-            article.published = article.created
+            article.published = datetime.now()
             article.save()
             return redirect(article)
     else:
@@ -61,8 +61,6 @@ def news_edit(request, id):
         form = ArticleForm(request.POST, request.FILES, instance=article)
         if form.is_valid():
             article = form.save(commit=False)
-            article.author = request.user
-            article.published = article.created
             article.save()
             return redirect(article)
     else:
