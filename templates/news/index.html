@@ -4,6 +4,7 @@
 
 {% block content %}
 {% if latest %}
+   <div id="article-list">
     {% for article in latest %}
     <article id="a{{ article.id}}">
         <header>
@@ -12,11 +13,12 @@
 
         <time datetime="{{ article.published.isoformat }}" pubdate="pubdate">{{ article.published }}</time>
 
-        <figure class="image"><img src="{{ article.image.url }}"></figure>
+        <figure class="image"><img style="height:150px;" src="{{ article.image.url }}"></figure>
 
         <section class='teaser'>{{ article.teaser|markdown }}</section>
     </article>
     {% endfor %}
+   </div>
 
     <nav class="pagination">
         <span class="step-links">
@@ -34,6 +36,6 @@
         </span>
     </nav>
 {% else %}
-    <p>No articles.</p>
+    <p>No articles. Write one</p>
 {% endif %}
 {% endblock content %}
