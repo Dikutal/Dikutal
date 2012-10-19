@@ -3,7 +3,7 @@
 {% load markup %}
 
 {% block content %}
-<form method="post" action=".">
+<form method="post" enctype="multipart/form-data" action=".">
     {% csrf_token %}
     {{ form.as_ul }}
     <input type="submit" value="Create article" />

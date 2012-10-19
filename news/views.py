@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
@@ -31,15 +31,19 @@ def view(model, request, id, slug):
 @csrf_protect
 def news_create(request):
     if request.POST:
-        form = ArticleForm(request.POST)
+        form = ArticleForm(request.POST, request.FILES)
         if form.is_valid():
-            article = form.save()
-            redirect(article)
+            article = form.save(commit=False)
+            article.author = request.user
+            article.published = article.created
+            article.save()
+            return redirect(article)
     else:
         form = ArticleForm()
-        return render_to_response('news/create.html', RequestContext(request, {
-            'form': form
-        }))
+
+    return render_to_response('news/create.html', RequestContext(request, {
+        'form': form
+    }))
 
 
 def news_index(request):

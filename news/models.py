@@ -12,9 +12,9 @@ class Article(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField()
     image = models.ImageField(upload_to='uploads')
-    event_start = models.DateTimeField(null=True)
-    event_end = models.DateTimeField(null=True)
-    event_location = models.CharField(max_length=100, null=True)
+    event_start = models.DateTimeField(null=True, blank=True)
+    event_end = models.DateTimeField(null=True, blank=True)
+    event_location = models.CharField(max_length=100, null=True, blank=True)
 
     def __unicode__(self):
         return self.title
@@ -24,6 +24,9 @@ class Article(models.Model):
         return ('news.views.news_view', (), {
             'id': self.id,
             'slug': self.slug})
+
+    def get_absolute_url(self):
+        return self.url()
 
 
 class ArticleAdmin(admin.ModelAdmin):
