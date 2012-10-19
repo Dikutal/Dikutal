@@ -16,6 +16,9 @@
     <p>
         By <span class="author">{{ article.author.get_full_name }}</span> on
         <time datetime="{{ article.published.isoformat }}" pubdate="pubdate">{{ article.published }}</time>
+        {% if can_edit %}
+        <a href="{% url news.views.news_edit id=article.id %}">edit</a>
+        {% endif %}
     </p>
 
     <figure class="image"><img src="{{ article.image.url }}"></figure>
