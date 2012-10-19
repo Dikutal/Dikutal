@@ -2,6 +2,7 @@
 
 {% load markup %}
 {% load comments %}
+{% load gravatar %}
 
 {% block head_extra %}
 <link rel="canonical" href="{{ article.url }}">
@@ -40,7 +41,7 @@
 {% for comment in comment_list %}
 
 <div class="comment">
-  <img class="gravatar" src="http://gravatar.com/avatar/3e987789ed85c8c6ccb0f6f584279447" alt="" />
+  {% gravatar comment.email %}
   <div class="content">
     <div class="author">{{ comment.user_name }} writes:</div>
     {{ comment.comment|markdown }}
