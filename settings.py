@@ -142,7 +142,6 @@ INSTALLED_APPS = (
     'news',
     'jobs',
     'planet',
-    'frontpage',
     'osqa_integration',
 )
 
