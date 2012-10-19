@@ -8,26 +8,32 @@
 {% endblock head_extra %}
 
 {% block content %}
+
+<div id="main">
+
 <article>
+    <div class="article-metadata">
+      <span class="author">{{ article.author.get_full_name }}</span>, 
+      <time datetime="{{ article.published.isoformat }}" pubdate="pubdate">{{ article.published|date:"d. F Y" }}</time>
+          {% if can_edit %}
+      <a href="{% url news.views.news_edit id=article.id %}"><span class="mpics">r</span></a>
+    {% endif %}
+
+    </div>
+
     <header>
-        <h2>{{ article.title }}</h2>
+        <h1>{{ article.title }}</h1>
     </header>
 
-    <p>
-        By <span class="author">{{ article.author.get_full_name }}</span> on
-        <time datetime="{{ article.published.isoformat }}" pubdate="pubdate">{{ article.published }}</time>
-        {% if can_edit %}
-        <a href="{% url news.views.news_edit id=article.id %}">edit</a>
-        {% endif %}
-    </p>
+    <!-- <figure class="image"><img src="{{ article.image.url }}"></figure> -->
+    <!-- <section id="teaser">{{ article.teaser|markdown }}</section> -->
 
-    <figure class="image"><img src="{{ article.image.url }}"></figure>
-
-    <section id="teaser">{{ article.teaser|markdown }}</section>
-
+<div id="bodytext">
     <section id="content">{{ article.content|markdown }}</section>
-
+</div>
 </article>
+
+
 
 <section id="comment_container">
 
@@ -38,4 +44,9 @@
 {% render_comment_form for article %}
 
 </section>
+
+</main>
+
 {% endblock content %}
+
+
