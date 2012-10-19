@@ -9,6 +9,7 @@ urlpatterns = patterns('jobs.views',
     #         queryset=Job.objects.order_by('-published')[:5],
     #         template_name='jobs/index.html')),
     (r'create/', 'create'),
+    (r'create-company/', 'create_company'),
     url(r'^(?P<pk>\d+)/$',
         DetailView.as_view(
             model=Job,

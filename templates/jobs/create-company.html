@@ -3,7 +3,6 @@
 {% load markup %}
 
 {% block content %}
-<p><a href='/jobs/create-company/'>Create company</a></p>
 <form method="post" enctype="multipart/form-data" action=".">
     {% csrf_token %}
     {{ form.as_ul }}
