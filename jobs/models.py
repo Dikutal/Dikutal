@@ -56,11 +56,12 @@ class JobAdmin(admin.ModelAdmin):
             'fields': ('title', 'content', 'published', 'company', 'slug')
         }),
         ('Job info', {
-            'classes': ('collapse', ),
             'description': 'Application information for the job.',
             'fields': ('address', 'hours', 'deadline', 'salary')
         }),
     )
+    list_display = ['title', 'company', 'salary', 'published', 'deadline']
+    list_filter = ['company', 'published', 'deadline']
 
 
 class JobFeed(models.Model):
