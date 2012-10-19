@@ -104,6 +104,9 @@ ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = ('./templates',)
 
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login/'
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
