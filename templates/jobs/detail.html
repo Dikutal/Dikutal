@@ -18,12 +18,12 @@
 <div class="company-info">
 <h3>The company</h3>
 <ul>
-    <li>{{ job.company_name }}</li>
-    <li>{{ job.company_description }}</li>
-    <li>Contact {{ job.company_contact }}</li>
-    <li>@ {{ job.company_email }}</li>
-    <li>  {{ job.company_address }}</li>
-    <li># {{ job.company_phone }}</li>
+    <li>{{ job.company.company_name }}</li>
+    <li>{{ job.company.company_description }}</li>
+    <li>Contact {{ job.company.company_contact }}</li>
+    <li>@ {{ job.company.company_email }}</li>
+    <li>  {{ job_address }}</li>
+    <li># {{ job.company.company_phone }}</li>
 </ul>
 </div>
 {% else %}

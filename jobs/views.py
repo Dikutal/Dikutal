@@ -22,18 +22,17 @@ def index(request):
     except EmptyPage:
         latest = paginator.page(paginator.num_pages)
 
-    return render_to_response('news/index.html', {'latest': latest})
-    job_list = Job.objects.filter(published__lt=datetime.now()).order_by('-published')
     feed_job_list = get_feed_articles('job_feed_articles', JobFeed)
 
     return render_to_response('jobs/index.html', {
-            'job_list': job_list,
+            'job_list': latest,
             'feed_job_list': feed_job_list})
 
 def view(model, request, id, slug):
     job = get_object_or_404(model, pk=id)
     return render_to_response('jobs/detail.html', RequestContext(request, {
         'job': job,
+        'job_address': job.address or job.company.company_address,
         'show': job.is_shown(),
         'can_edit': job.can_edit(request.user),
     }))

@@ -66,10 +66,10 @@ class Job(models.Model):
 
     def is_shown(self):
         now = datetime.now()
-        return self.published is not None \
-            and self.deadline is not None \
-            and self.published <= now \
-            and self.deadline > now
+        return (self.published is not None
+                and (self.deadline is None or
+                     (self.published <= now
+                      and self.deadline > now)))
     is_shown.boolean = True
     is_shown.admin_order_field = 'published'
 
