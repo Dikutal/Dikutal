@@ -10,10 +10,11 @@ urlpatterns = patterns('jobs.views',
     #         template_name='jobs/index.html')),
     (r'create/', 'create'),
     (r'create-company/', 'create_company'),
-    url(r'^(?P<pk>\d+)/$',
-        DetailView.as_view(
-            model=Job,
-            template_name='jobs/detail.html')),
+    (r'^(?P<id>\d+)/(?P<slug>.*)$', 'jobs_view'),
+    # url(r'^(?P<pk>\d+)/$',
+    #     DetailView.as_view(
+    #         model=Job,
+    #         template_name='jobs/detail.html')),
     #url(r'^(?P<pk>\d+)/results/$',
     #    DetailView.as_view(
     #        model=Poll,

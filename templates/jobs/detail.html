@@ -2,6 +2,7 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
+{% if show %}
 <div class="body">
 {{ job.content }}
 </div>
@@ -25,3 +26,6 @@
     <li># {{ job.company_phone }}</li>
 </ul>
 </div>
+{% else %}
+<p>The deadline has passed.</p>
+{% endif %}
