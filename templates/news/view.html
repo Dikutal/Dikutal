@@ -2,6 +2,7 @@
 
 {% load markup %}
 {% load comments %}
+{% load gravatar %}
 
 {% block head_extra %}
 <link rel="canonical" href="{{ article.url }}">
@@ -34,13 +35,19 @@
 <section id="comment-container">
 
 {% get_comment_count for article as comment_count %}
-<span id="comment-count">{{ comment_count }} comments.</span>
+<span id="comment-count">
+    {% if comment_count == 0 %}
+    No comments.
+    {% else %}
+    {{ comment_count }} comment{{ comment_count|pluralize }}.
+    {% endif %}
+</span>
 
 {% get_comment_list for article as comment_list %}
 {% for comment in comment_list %}
 
 <div class="comment">
-  <img class="gravatar" src="http://gravatar.com/avatar/3e987789ed85c8c6ccb0f6f584279447" alt="" />
+  {% gravatar comment.email %}
   <div class="content">
     <div class="author">{{ comment.user_name }} writes:</div>
     {{ comment.comment|markdown }}
