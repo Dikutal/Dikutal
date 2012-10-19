@@ -1,0 +1,3 @@
+{{ object.title }}
+{{ object.teaser }}
+{{ object.content }}

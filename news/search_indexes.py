@@ -3,8 +3,7 @@ from haystack import indexes
 from news.models import Article
 
 class ArticleIndex(indexes.RealTimeSearchIndex, indexes.Indexable):
-    title = indexes.CharField(model_attr='title')
-    text = indexes.CharField(model_attr='content', document=True)
+    text = indexes.CharField(document=True, use_template=True)
     author = indexes.CharField(model_attr='author')
     published = indexes.DateTimeField(model_attr='published')
 
