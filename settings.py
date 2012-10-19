@@ -145,6 +145,7 @@ INSTALLED_APPS = (
     'news',
     'jobs',
     'planet',
+    'dikucalendar',
     'osqa_integration',
 )
 
