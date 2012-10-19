@@ -147,6 +147,7 @@ INSTALLED_APPS = (
     'planet',
     'dikucalendar',
     'osqa_integration',
+    'haystack',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -177,5 +178,13 @@ DATETIME_FORMAT=r'j. N Y \a\t H:i'
 FEED_CACHE_DURATION = 30 * 60 * 24
 
 DATABASE_ROUTERS = ['osqa_integration.routers.OSQARouter']
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://127.0.0.1:9200/',
+        'INDEX_NAME': 'dikutal',
+    },
+}
 
 from settings_local import *
