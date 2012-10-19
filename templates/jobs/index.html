@@ -1,3 +1,8 @@
+{% extends "master.html" %}
+
+{% load markup %}
+
+{% block content %}
 {% if job_list %}
     <ul>
     {% for job in job_list %}
@@ -11,3 +16,4 @@
 {% else %}
     <p>No jobs are available.</p>
 {% endif %}
+{% endblock content %}
