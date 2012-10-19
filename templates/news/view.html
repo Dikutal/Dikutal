@@ -59,7 +59,7 @@
 
 {% if user.is_authenticated %}
     {% get_comment_form for article as form %}
-    <form action="{% comment_form_target %}" method="POST">
+    <form action="{% comment_form_target %}" method="POST" id="replyform">
     {% csrf_token %}
     {{ form.comment }}
     {{ form.honeypot }}
@@ -68,7 +68,7 @@
     {{ form.timestamp }}
     {{ form.security_hash }}
     <input type="hidden" name="next" value="{{ article.url }}">
-    <button type="submit">Add comment</button>
+    <button type="submit" class="savebutton">Add comment</button>
     </form>
 {% else %}
     <p>Please <a href="{% url login %}">log in</a> to leave a comment.</p>
