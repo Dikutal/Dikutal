@@ -2,6 +2,8 @@ from django.conf.urls.defaults import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+import settings
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -16,6 +18,8 @@ urlpatterns = patterns('',
 
     url(r'^login/$', 'django.contrib.auth.views.login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
+
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 
     url(r'^jobs/', include('jobs.urls')),
     url(r'^news/', include('news.urls')),
