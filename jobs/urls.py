@@ -8,6 +8,7 @@ urlpatterns = patterns('jobs.views',
     #     ListView.as_view(
     #         queryset=Job.objects.order_by('-published')[:5],
     #         template_name='jobs/index.html')),
+    (r'create/', 'create'),
     url(r'^(?P<pk>\d+)/$',
         DetailView.as_view(
             model=Job,
