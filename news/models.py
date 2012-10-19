@@ -3,6 +3,8 @@ from django.contrib import admin
 from django.contrib.admin import BooleanFieldListFilter
 from django.contrib.auth.models import User
 
+from datetime import datetime
+
 class Article(models.Model):
     title = models.CharField(max_length=300)
     teaser = models.TextField()
@@ -32,7 +34,10 @@ class Article(models.Model):
     def can_edit(self, user):
         return user == self.author or user.is_staff
 
-
+    def is_published(self):
+        return self.published is not None and self.published <= datetime.now()
+    is_published.boolean = True
+    is_published.admin_order_field = 'published'
 
 class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
@@ -46,5 +51,13 @@ class ArticleAdmin(admin.ModelAdmin):
             'fields': ('event_start', 'event_end', 'event_location')
         }),
         )
-    list_display = ['title', 'slug', 'author', 'created', 'last_edited', 'published']
+    actions = ['publish', 'unpublish']
+    list_display = ['title', 'slug', 'author', 'created', 'last_edited', 'is_published']
     list_filter = ('author__username', 'published')
+    search_fields = ['title', 'author__username', 'teaser', 'content', 'event_location']
+
+    def publish(modeladmin, request, queryset):
+        queryset.filter(published=None).update(published=datetime.now())
+
+    def unpublish(modeladmin, request, queryset):
+        queryset.update(published=None)
