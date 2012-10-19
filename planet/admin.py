@@ -1,4 +1,4 @@
-from planet.models import Feed, FeedAdmin
+from planet.models import PlanetFeed, PlanetFeedAdmin
 from django.contrib import admin
 
-admin.site.register(Feed, FeedAdmin)
+admin.site.register(PlanetFeed, PlanetFeedAdmin)

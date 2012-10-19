@@ -5,16 +5,11 @@
 <p>All times are converted to Denmark time: UTC + 02:00 when DST, and UTC +
   01:00 when not DST.</p>
 
-<p><a href='overview'>Overview</a></p>
+<p><a href='.'>Full view</a></p>
 
 {% for article in articles %}
-<div class='planetarticle'>
-  <h1><a href='{{ article.url }}'>{{ article.title }}</a></h1>
-  <h2>{{ article.updated|dtformat }}</h2>
-  <div class='planetarticle'>
-    {{ article.html|safe }}
-  </div>
-</div>
+<h1><a href='{{ article.url }}'>{{ article.title }}</a>
+  ({{ article.updated|dtformat }})</h1>
 {% endfor %}
 {% if not articles %}
 <p>No articles.</p>

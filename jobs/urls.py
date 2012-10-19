@@ -2,11 +2,12 @@ from django.conf.urls.defaults import patterns, include, url
 from django.views.generic import DetailView, ListView
 from jobs.models import Job
 
-urlpatterns = patterns('',
-    url(r'^$',
-        ListView.as_view(
-            queryset=Job.objects.order_by('-published')[:5],
-            template_name='jobs/index.html')),
+urlpatterns = patterns('jobs.views',
+    (r'^$', 'index'),
+    # url(r'^$',
+    #     ListView.as_view(
+    #         queryset=Job.objects.order_by('-published')[:5],
+    #         template_name='jobs/index.html')),
     url(r'^(?P<pk>\d+)/$',
         DetailView.as_view(
             model=Job,

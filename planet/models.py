@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib import admin
 
-class Feed(models.Model):
+class PlanetFeed(models.Model):
     url = models.URLField()
     last_edited = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -9,7 +9,7 @@ class Feed(models.Model):
     def __unicode__(self):
         return self.url
 
-class FeedAdmin(admin.ModelAdmin):
+class PlanetFeedAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': ('url',)
