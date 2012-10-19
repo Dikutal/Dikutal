@@ -152,3 +152,5 @@ LOGGING = {
 DATETIME_FORMAT='N j, Y, H:i'
 
 FEED_CACHE_DURATION = 30 * 60 * 24
+
+from settings_local import *
