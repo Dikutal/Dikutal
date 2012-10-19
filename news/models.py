@@ -47,4 +47,4 @@ class ArticleAdmin(admin.ModelAdmin):
         }),
         )
     list_display = ['title', 'slug', 'author', 'created', 'last_edited', 'published']
-    list_filter = ['published']
+    list_filter = ('author__username', 'published')
