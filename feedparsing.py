@@ -27,12 +27,17 @@ class FeedArticle(object):
         self.updated = self.updated.astimezone(dtz.copenhagen)
 
 def get_feed_articles(cache_name, feed_obj):
-    articles = cache.get(cache_name)
-    if articles is None:
-        feeds = feed_obj.objects.all()
-        feeds = (map(FeedArticle, feedparser.parse(feed.url).entries)
-                 for feed in feeds)
-        articles = list(itertools.chain(*feeds))
-        articles.sort(key=lambda article: article.updated, reverse=True)
-        cache.set(cache_name, articles, FEED_CACHE_DURATION)
+    articles = []
+
+    feeds = feed_obj.objects.all()
+    for feed in feeds:
+        feed_cache_name = cache_name + "." + str(feed.id)
+        feedarts = cache.get(feed_cache_name)
+        if not feedarts:
+            feedarts = map(FeedArticle, feedparser.parse(feed.url).entries)
+            cache.set(feed_cache_name, feedarts, FEED_CACHE_DURATION)
+        articles.extend(feedarts)
+
+    articles.sort(key=lambda article: article.updated, reverse=True)
+
     return articles
