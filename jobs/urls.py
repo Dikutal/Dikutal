@@ -2,7 +2,7 @@ from django.conf.urls.defaults import patterns, include, url
 from django.views.generic import DetailView, ListView
 from jobs.models import Job
 
-urlpatterns = patterns('',
+urlpatterns = patterns('jobs.views',
     (r'^$', 'index'),
     # url(r'^$',
     #     ListView.as_view(
