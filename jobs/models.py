@@ -64,6 +64,7 @@ class JobAdmin(admin.ModelAdmin):
 
 
 class JobFeed(models.Model):
+    title = models.CharField(max_length=200)
     url = models.URLField()
     last_edited = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -74,6 +75,7 @@ class JobFeed(models.Model):
 class JobFeedAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
-            'fields': ('url',)
+            'fields': ('title', 'url')
         }),
         )
+    list_display = ['title', 'url']
