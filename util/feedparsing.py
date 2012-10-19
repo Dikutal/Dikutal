@@ -1,7 +1,7 @@
 import feedparser
 from django.core.cache import cache
 from settings import *
-import dikutaltimezone as dtz
+import util.dikutaltimezone as dtz
 import time
 import datetime
 import itertools

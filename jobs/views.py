@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_protect
 from datetime import datetime
 from jobs.models import Company, Job, JobFeed
 from settings import *
-from feedparsing import get_feed_articles
+from util.feedparsing import get_feed_articles
 from jobs.forms import CompanyForm, JobForm
 
 def index(request):
