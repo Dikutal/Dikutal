@@ -1,5 +1,8 @@
 # Django settings for dikutal project.
 
+from os.path import dirname, join, realpath
+import sys
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -9,6 +12,13 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+# Directory containing the OSQA project directory
+OSQA_PROJECT_DIR = '/home/daniel/projects/dikutal'
+
+dname = realpath(dirname(__file__))
+sys.path[0] = join(dname)
+sys.path.insert(0, join(sys.path[0], OSQA_PROJECT_DIR))
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -17,6 +27,14 @@ DATABASES = {
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    },
+    'osqa': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'osqa.db',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
     }
 }
 
@@ -124,6 +142,7 @@ INSTALLED_APPS = (
     'news',
     'jobs',
     'planet',
+    'osqa_integration',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -152,5 +171,7 @@ LOGGING = {
 DATETIME_FORMAT='N j, Y, H:i'
 
 FEED_CACHE_DURATION = 30 * 60 * 24
+
+DATABASE_ROUTERS = ['osqa_integration.routers.OSQARouter']
 
 from settings_local import *
