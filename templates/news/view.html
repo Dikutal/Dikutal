@@ -44,13 +44,12 @@
   <div class="content">
     <div class="author">{{ comment.user_name }} writes:</div>
     {{ comment.comment|markdown }}
+    <div class="date">{{ comment.submit_date }}</div>
   </div>
   <div class="clearall"> </div>
 </div>
   
 {% endfor %}
-
-{% render_comment_list for article %}
 
 <h2>Add comment</h2>
 {% if user.is_authenticated %}
