@@ -10,6 +10,12 @@ class Company(models.Model):
     company_address = models.TextField(blank=True)
     company_phone = models.CharField(max_length=100, blank=True)
 
+    def __unicode__(self):
+        return self.company_name
+
+    class Meta:
+        verbose_name_plural = 'companies'
+
 class CompanyAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
