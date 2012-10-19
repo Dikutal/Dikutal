@@ -28,6 +28,10 @@ class Article(models.Model):
     def get_absolute_url(self):
         return self.url()
 
+    def can_edit(self, user):
+        return user == self.author or user.is_staff
+
+
 
 class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}

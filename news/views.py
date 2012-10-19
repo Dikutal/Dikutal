@@ -1,6 +1,7 @@
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from news.forms import ArticleForm
@@ -42,9 +43,31 @@ def news_create(request):
         form = ArticleForm()
 
     return render_to_response('news/create.html', RequestContext(request, {
-        'form': form
+        'form': form,
     }))
 
+@login_required
+@csrf_protect
+def news_edit(request, id):
+    article = get_object_or_404(Article, pk=id)
+
+    if not article.can_edit(request.user):
+        return HttpResponseForbidden()
+
+    if request.POST:
+        form = ArticleForm(request.POST, request.FILES, instance=article)
+        if form.is_valid():
+            article = form.save(commit=False)
+            article.author = request.user
+            article.published = article.created
+            article.save()
+            return redirect(article)
+    else:
+        form = ArticleForm(instance=article)
+
+    return render_to_response('news/edit.html', RequestContext(request, {
+        'form': form,
+    }))
 
 def news_index(request):
     return index(Article, request)
