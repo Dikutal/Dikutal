@@ -10,8 +10,8 @@
 
 {% block content %}
 
-<article>
-    <div class="article-metadata">
+<article class="article">
+    <div class="metadata">
       <span class="author">{{ article.author.get_full_name }}</span>, 
       <time datetime="{{ article.published.isoformat }}" pubdate="pubdate">{{ article.published|date:"d. F Y" }}</time>
           {% if can_edit %}
@@ -24,9 +24,8 @@
         <h1>{{ article.title }}</h1>
     </header>
 
-    <!-- <figure class="image"><img src="{{ article.image.url }}"></figure> -->
-    <!-- <section id="teaser">{{ article.teaser|markdown }}</section> -->
-
+    <figure class="image"><img src="{{ article.image.url }}"></figure>
+    <section class="teaser">{{ article.teaser|markdown }}</section>
     <section class="bodytext" id="content">{{ article.content|markdown }}</section>
 </article>
 
@@ -35,13 +34,13 @@
 <section id="comment-container">
 
 {% get_comment_count for article as comment_count %}
-<span id="comment-count">
+<div id="comment-count">
     {% if comment_count == 0 %}
-    No comments.
+    No comments
     {% else %}
-    {{ comment_count }} comment{{ comment_count|pluralize }}.
+    {{ comment_count }} comment{{ comment_count|pluralize }}
     {% endif %}
-</span>
+</div>
 
 {% get_comment_list for article as comment_list %}
 {% for comment in comment_list %}
@@ -58,7 +57,6 @@
   
 {% endfor %}
 
-<h2>Add comment</h2>
 {% if user.is_authenticated %}
     {% get_comment_form for article as form %}
     <form action="{% comment_form_target %}" method="POST">
