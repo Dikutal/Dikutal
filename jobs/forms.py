@@ -7,4 +7,4 @@ from django.core.exceptions import ValidationError
 class JobForm(forms.ModelForm):
     class Meta:
         model = Job
-        fields = ('title', 'content', 'address', 'hours', 'deadline', 'salary')
+        fields = ('title', 'content', 'address', 'hours', 'deadline', 'salary', 'company')
