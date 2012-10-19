@@ -35,7 +35,7 @@
 <section id="comment-container">
 
 {% get_comment_count for article as comment_count %}
-<span id="comment-count">{{ comment_count }} comments.</span>
+<span id="comment-count">{{ comment_count }} comment{{ comment_count|pluralize }}.</span>
 
 {% get_comment_list for article as comment_list %}
 {% for comment in comment_list %}
