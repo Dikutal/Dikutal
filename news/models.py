@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib import admin
+from django.contrib.admin import BooleanFieldListFilter
 from django.contrib.auth.models import User
 
 class Article(models.Model):
@@ -45,3 +46,5 @@ class ArticleAdmin(admin.ModelAdmin):
             'fields': ('event_start', 'event_end', 'event_location')
         }),
         )
+    list_display = ['title', 'slug', 'author', 'created', 'last_edited', 'published']
+    list_filter = ['published']
