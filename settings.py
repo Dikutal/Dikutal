@@ -171,7 +171,7 @@ LOGGING = {
     }
 }
 
-DATETIME_FORMAT='N j, Y, H:i'
+DATETIME_FORMAT=r'j. N Y \a\t H:i'
 
 FEED_CACHE_DURATION = 30 * 60 * 24
 
