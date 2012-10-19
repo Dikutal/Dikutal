@@ -1,0 +1,10 @@
+{% extends "master.html" %}
+
+{% load markup %}
+
+{% block content %}
+<form method="post" action=".">
+    {{ form.as_ul }}
+    <input type="submit" value="Create user" />
+</form>
+{% endblock content %}
