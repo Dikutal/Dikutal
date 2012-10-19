@@ -53,9 +53,9 @@ class Job(models.Model):
 
     @models.permalink
     def url(self):
-        return ('jobs.views.job_view', (), {
-            'id': self.id,
-            'slug': self.slug})
+        return ('jobs.views.jobs_view', (), {
+                'id': self.id,
+                'slug': self.slug})
 
     def get_absolute_url(self):
         return self.url()

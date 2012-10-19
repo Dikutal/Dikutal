@@ -1,23 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
-from django.contrib.syndication.views import Feed
 from django.contrib import admin
-from news.models import Article
 import settings
-
-class LatestArticles(Feed):
-    title = "Dikutal's articles"
-    link = "/news/"
-    description = "The newest articles from Dikutal"
-
-    def items(self):
-        return Article.objects.order_by('-published')[:5]
-
-    def item_title(self, item):
-        return item.title
-
-    def item_description(self, item):
-        return item.teaser
-
 
 admin.autodiscover()
 
@@ -41,6 +24,4 @@ urlpatterns = patterns('',
     url(r'^jobs/', include('jobs.urls')),
     url(r'^news/', include('news.urls')),
     url(r'^planet/', include('planet.urls')),
-
-    url(r'^news/feed/$', LatestArticles()),
 )
