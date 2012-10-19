@@ -43,7 +43,7 @@ class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     fieldsets = (
         (None, {
-            'fields': ('title', 'teaser', 'content', 'published', 'slug')
+            'fields': ('title', 'author', 'teaser', 'content', 'published', 'slug')
         }),
         ('Event details', {
             'classes': ('collapse', ),
@@ -55,6 +55,11 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title', 'slug', 'author', 'created', 'last_edited', 'is_published']
     list_filter = ('author__username', 'published')
     search_fields = ['title', 'author__username', 'teaser', 'content', 'event_location']
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super(ArticleAdmin, self).get_form(request, obj, **kwargs)
+        form.base_fields['author'].initial = request.user
+        return form
 
     def publish(modeladmin, request, queryset):
         queryset.filter(published=None).update(published=datetime.now())
