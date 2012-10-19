@@ -24,6 +24,7 @@ class CompanyAdmin(admin.ModelAdmin):
                        'company_email', 'company_phone')
         }),
     )
+    list_display = ['company_name', 'company_address', 'company_contact', 'company_email', 'company_phone']
 
 
 class Job(models.Model):
