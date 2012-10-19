@@ -1,0 +1,32 @@
+{% extends "master.html" %}
+
+{% block content %}
+Awesome frontpage.
+
+<div id="sidebar">
+
+    {% if latest_articles %}
+    <section>
+        <h2>Latest articles</h2>
+
+        <ol>
+            {% for article in latest_articles %}
+            <li><a href='{{ article.url }}'>{{ article.title }}</a></li>
+            {% endfor %}
+        </ol>
+    </section>
+    {% endif %}
+
+    {% if latest_jobs %}
+    <section>
+        <h2>Latest articles</h2>
+
+        <ul>
+        {% for job in latest_jobs %}
+            <li><a href="/jobs/{{ job.id }}/">{{ job.title }}</a></li>
+        {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+</div>
+{% endblock content %}
