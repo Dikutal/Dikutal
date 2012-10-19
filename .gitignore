@@ -1,9 +1,5 @@
 *.pyc
 *~
 .idea
-<<<<<<< Updated upstream
-data.db
 settings_local.py
-=======
 *.db
->>>>>>> Stashed changes
