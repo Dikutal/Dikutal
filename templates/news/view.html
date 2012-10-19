@@ -9,8 +9,6 @@
 
 {% block content %}
 
-<div id="main">
-
 <article>
     <div class="article-metadata">
       <span class="author">{{ article.author.get_full_name }}</span>, 
@@ -28,17 +26,29 @@
     <!-- <figure class="image"><img src="{{ article.image.url }}"></figure> -->
     <!-- <section id="teaser">{{ article.teaser|markdown }}</section> -->
 
-<div id="bodytext">
-    <section id="content">{{ article.content|markdown }}</section>
-</div>
+    <section class="bodytext" id="content">{{ article.content|markdown }}</section>
 </article>
 
 
 
-<section id="comment_container">
+<section id="comment-container">
 
 {% get_comment_count for article as comment_count %}
-<p>{{ comment_count }} comments have been posted.</p>
+<span id="comment-count">{{ comment_count }} comments.</span>
+
+{% get_comment_list for article as comment_list %}
+{% for comment in comment_list %}
+
+<div class="comment">
+  <img class="gravatar" src="http://gravatar.com/avatar/3e987789ed85c8c6ccb0f6f584279447" alt="" />
+  <div class="content">
+    <div class="author">{{ comment.user_name }} writes:</div>
+    {{ comment.comment|markdown }}
+  </div>
+  <div class="clearall"> </div>
+</div>
+  
+{% endfor %}
 
 {% render_comment_list for article %}
 
