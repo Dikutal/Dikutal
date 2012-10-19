@@ -1,4 +1,5 @@
 {% extends "master.html" %}
+{% load extra_filters %}
 
 {% block content %}
 <p>All times are converted to Denmark time: UTC + 02:00 when DST, and UTC +
@@ -9,7 +10,7 @@
 {% for article in articles %}
 <div class='planetarticle'>
   <h1><a href='{{ article.url }}'>{{ article.title }}</a></h1>
-  <h2>{{ article.updated|date:"D, d M Y H:i:s" }}</h2>
+  <h2>{{ article.updated|dtformat }}</h2>
   <div class='planetarticle'>
     {{ article.html|safe }}
   </div>

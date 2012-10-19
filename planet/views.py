@@ -7,8 +7,8 @@ from feedparsing import get_feed_articles
 
 def index(request):
     return render_to_response('planet/index.html', {
-            'articles': get_feed_articles(request, 'planet_articles', PlanetFeed)})
+            'articles': get_feed_articles('planet_articles', PlanetFeed)})
 
 def overview(request):
     return render_to_response('planet/overview.html', {
-            'articles': get_feed_articles(request, 'planet_articles', PlanetFeed)})
+            'articles': get_feed_articles('planet_articles', PlanetFeed)})

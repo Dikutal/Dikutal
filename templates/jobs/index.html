@@ -3,6 +3,10 @@
     {% for job in job_list %}
         <li><a href="/jobs/{{ job.id }}/">{{ job.title }}</a></li>
     {% endfor %}
+
+    {% for job in feed_job_list %}
+        <li><a href="/jobs/fromfeed_magic_id/">{{ job.title }}</a></li>
+    {% endfor %}
     </ul>
 {% else %}
     <p>No jobs are available.</p>

@@ -26,7 +26,7 @@ class FeedArticle(object):
         self.updated += dtz.copenhagen.utcoffset(self.updated)
         self.updated = self.updated.astimezone(dtz.copenhagen)
 
-def get_feed_articles(request, cache_name, feed_obj):
+def get_feed_articles(cache_name, feed_obj):
     articles = cache.get(cache_name)
     if articles is None:
         feeds = feed_obj.objects.all()
