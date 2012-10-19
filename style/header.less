@@ -1,0 +1,43 @@
+body, #dikutal-header, #dikutal-header ol {
+  margin: 0;
+  padding:0;
+}
+
+@menu_color_bg:  #02986b; //#4e8924; // 6EC032; // #E3D932;
+@menu_color_text: #ddd; //#ffad2c; //#E3D932;
+@menu_hover_color_text: #FFF;
+
+#dikutal-header {
+  width:100%;
+  line-height: 24px;
+  background-color: @menu_color_bg;
+  color: @menu_color_text;
+  font-family: sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  border-bottom:1px solid grey;
+
+  ol { }
+
+  ol li {
+   display:inline;
+   margin-left: 14px;
+  }
+
+ ol li a {
+  text-decoration:none;
+  color: @menu_color_text;
+ }
+
+  ol li a:hover,
+  ol li a.selected {
+    color: @menu_hover_color_text;
+  }
+
+  img#small-logo {
+    margin-left:15px;
+    margin-top:2px;
+    padding:0;
+    float:left;
+  }
+}
