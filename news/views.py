@@ -26,7 +26,10 @@ def index(model, request):
 
 def view(model, request, id, slug):
     article = get_object_or_404(model, pk=id)
-    return render_to_response('news/view.html', RequestContext(request, {'article': article}))
+    return render_to_response('news/view.html', RequestContext(request, {
+        'article':  article,
+        'can_edit': article.can_edit(request.user),
+    }))
 
 @login_required
 @csrf_protect
