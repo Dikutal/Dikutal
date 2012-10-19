@@ -27,7 +27,7 @@ def view(model, request, id, slug):
     article = get_object_or_404(model, pk=id)
     return render_to_response('news/view.html', RequestContext(request, {'article': article}))
 
-#@login_required
+@login_required
 @csrf_protect
 def news_create(request):
     if request.POST:
