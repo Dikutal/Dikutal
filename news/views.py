@@ -1,9 +1,11 @@
-from django.http import HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_protect
+from news.forms import ArticleForm
 
-from news.models import Article, NewsArticle
+from news.models import Article
 
 import datetime
 
@@ -25,14 +27,23 @@ def view(model, request, id, slug):
     article = get_object_or_404(model, pk=id)
     return render_to_response('news/view.html', RequestContext(request, {'article': article}))
 
-def article_index(request):
-    return index(Article, request)
+@login_required
+@csrf_protect
+def news_create(request):
+    if request.POST:
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            article = form.save()
+            redirect(article)
+    else:
+        form = ArticleForm()
+        return render_to_response('news/create.html', RequestContext(request, {
+            'form': form
+        }))
+
 
 def news_index(request):
-    return index(NewsArticle, request)
-
-def article_view(request, id, slug):
-    return view(Article, request, id, slug)
+    return index(Article, request)
 
 def news_view(request, id, slug):
-    return view(NewsArticle, request, id, slug)
+    return view(Article, request, id, slug)

@@ -12,27 +12,22 @@ class Article(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField()
     image = models.ImageField(upload_to='uploads')
+    event_start = models.DateTimeField(null=True)
+    event_end = models.DateTimeField(null=True)
+    event_location = models.CharField(max_length=100, null=True)
 
     def __unicode__(self):
         return self.title
 
     @models.permalink
     def url(self):
-        return ('news.views.article_view', (), {
+        return ('news.views.news_view', (), {
             'id': self.id,
             'slug': self.slug})
 
 
 class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
-
-
-class NewsArticle(Article):
-    event_date = models.DateField(null=True)
-    event_location = models.CharField(max_length=100, null=True)
-
-
-class NewsArticleAdmin(ArticleAdmin):
     fieldsets = (
         (None, {
             'fields': ('title', 'teaser', 'content', 'published', 'slug')
@@ -40,6 +35,6 @@ class NewsArticleAdmin(ArticleAdmin):
         ('Event details', {
             'classes': ('collapse', ),
             'description': 'Articles with an event date will be showed in the calendar.',
-            'fields': ('event_date', 'event_location')
+            'fields': ('event_start', 'event_end', 'event_location')
         }),
-    )
+        )
