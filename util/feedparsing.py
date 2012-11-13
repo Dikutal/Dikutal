@@ -35,9 +35,16 @@ def get_feed_articles(cache_name, feed_obj):
         feedarts = cache.get(feed_cache_name)
         if not feedarts:
             feedarts = map(FeedArticle, feedparser.parse(feed.url).entries)
+            add_feed_metadata(feed, feedarts)
             cache.set(feed_cache_name, feedarts, FEED_CACHE_DURATION)
         articles.extend(feedarts)
 
     articles.sort(key=lambda article: article.updated, reverse=True)
 
     return articles
+
+def add_feed_metadata(feed, articles):
+    for article in articles:
+        article.feed = feed
+        article.author = feed.owner
+        article.published = article.updated
