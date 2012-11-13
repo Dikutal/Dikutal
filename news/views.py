@@ -22,7 +22,7 @@ def index(model, request):
     except EmptyPage:
         latest = paginator.page(paginator.num_pages)
 
-    return render_to_response('news/index.html', {'latest': latest})
+    return render_to_response('news/index.html', RequestContext(request, {'latest': latest}))
 
 def view(model, request, id, slug):
     article = get_object_or_404(model, pk=id)
