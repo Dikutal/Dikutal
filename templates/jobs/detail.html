@@ -8,7 +8,7 @@
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 <div class="body">
-{{ job.content }}
+{{ job.content|markdown }}
 </div>
 <div class="job-info">
 <h3>The job</h3>
