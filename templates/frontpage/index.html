@@ -5,14 +5,16 @@
 
 {% block content %}
 
-<div style="float:left; width: 580px;">
-    {% if latest_articles %}
-    <section>
-        <h1>Dikutal</h1>
+<h1 class="dikutal-title">Dikutal</h1>
 
+<div style="float:left; width: 580px;">
+    {% if feed_items %}
+    <section id="frontpage-feed">
         <div>
-            {% for article in latest_articles %}
+            {% for article in feed_items %}
+            <article>
             <a href='{{ article.url }}'><h2>{{ article.title }}</h2></a>
+            </article>
             {% endfor %}
         </div>
     </section>

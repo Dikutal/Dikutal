@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib import admin
 from django.contrib.auth.models import User
+from util.feedparsing import get_feed_articles
 
 class PlanetFeed(models.Model):
     title = models.CharField(max_length=300)
@@ -11,6 +12,10 @@ class PlanetFeed(models.Model):
 
     def __unicode__(self):
         return self.url
+
+    @staticmethod
+    def get_articles():
+        return get_feed_articles('planet_articles', PlanetFeed)
 
 class PlanetFeedAdmin(admin.ModelAdmin):
     fieldsets = (
