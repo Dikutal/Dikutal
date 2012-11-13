@@ -23,6 +23,12 @@
       <li><a href="/planet">Blogs</a></li>
       <li><a href="http://qa.dikutal.dk/">Q&A</a></li>
       {% if user.is_staff %}<li><a href="/admin">Admin</a></li>{% endif %}
+      {% if user.is_authenticated %}
+        <li class="menu-right"><a href="{% url django.contrib.auth.views.logout %}">Log out</a></li>
+      {% else %}
+        <li class="menu-right"><a href="{% url django.contrib.auth.views.login %}">Log in</a></li>
+      {% endif %}
+
     </ol>
   </div>
 
