@@ -23,7 +23,7 @@ def generate_feed():
     blogs = PlanetFeed.get_articles()[:NUM_FEED]
 
     content = []
-    content.extend((a, datetime.datetime.now() - a.published) for a in articles)
-    content.extend((b, 2*(datetime.datetime.utcnow() - b.updated.replace(tzinfo=None))) for b in blogs)
+    content.extend((a, datetime.datetime.now() - a.published, "article") for a in articles)
+    content.extend((b, 2*(datetime.datetime.utcnow() - b.updated.replace(tzinfo=None)), "blogpost") for b in blogs)
 
-    return [c for (c, v) in sorted(content, key=itemgetter(1))][:NUM_FEED]
+    return [{ 'content': c, 'type': t } for (c, v, t) in sorted(content, key=itemgetter(1))][:NUM_FEED]

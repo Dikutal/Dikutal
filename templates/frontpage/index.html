@@ -11,9 +11,14 @@
     {% if feed_items %}
     <section id="frontpage-feed">
         <div>
-            {% for article in feed_items %}
+            {% for item in feed_items %}
             <article>
-            <a href='{{ article.url }}'><h2>{{ article.title }}</h2></a>
+            <h2>
+                <span class="mpics">
+                {% if item.type == "article" %}a{% elif item.type == "blogpost" %}b{% else %}?{% endif %}
+                </span>
+                <a href='{{ item.content.url }}'>{{ item.content.title }}</a>
+            </h2>
             </article>
             {% endfor %}
         </div>
