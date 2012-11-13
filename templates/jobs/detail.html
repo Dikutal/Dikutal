@@ -1,3 +1,8 @@
+{% extends "master.html" %}
+
+{% load markup %}
+
+{% block content %}
 <h1>{{ job.title }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -25,3 +30,4 @@
     <li># {{ job.company.company_phone }}</li>
 </ul>
 </div>
+{% endblock content %}
