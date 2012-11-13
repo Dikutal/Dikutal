@@ -24,9 +24,9 @@ def index(request):
 
     feed_job_list = get_feed_articles('job_feed_articles', JobFeed)
 
-    return render_to_response('jobs/index.html', {
+    return render_to_response('jobs/index.html', RequestContext(request, {
             'job_list': latest,
-            'feed_job_list': feed_job_list})
+            'feed_job_list': feed_job_list}))
 
 def view(model, request, id, slug):
     job = get_object_or_404(model, pk=id)

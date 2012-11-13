@@ -11,7 +11,7 @@ from attachments.models import Attachment
 from datetime import datetime
 
 def attachments_index(request):
-    return render_to_response('attachments/index.html')
+    return render_to_response('attachments/index.html', RequestContext(request, {}))
 
 def view(request, id):
     attachment = get_object_or_404(Attachment, pk=id)

@@ -6,9 +6,9 @@ from settings import *
 
 
 def index(request):
-    return render_to_response('planet/index.html', {
-            'articles': PlanetFeed.get_articles()})
+    return render_to_response('planet/index.html', RequestContext(request, {
+            'articles': PlanetFeed.get_articles()}))
 
 def overview(request):
-    return render_to_response('planet/overview.html', {
-            'articles': PlanetFeed.get_articles()})
+    return render_to_response('planet/overview.html', RequestContext(request, {
+            'articles': PlanetFeed.get_articles()}))

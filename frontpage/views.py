@@ -1,4 +1,5 @@
 from django.shortcuts import render_to_response, get_object_or_404, redirect
+from django.template import RequestContext
 from news.models import Article
 from planet.models import PlanetFeed
 from jobs.models import Job
@@ -13,10 +14,10 @@ def index(request):
     feed = generate_feed()
     jobs = Job.objects.filter(published__lt=datetime.datetime.now()).order_by('-published')[:NUM_LATEST]
 
-    return render_to_response('frontpage/index.html', {
+    return render_to_response('frontpage/index.html', RequestContext(request, {
         'feed_items':  feed,
         'latest_jobs': jobs,
-    })
+    }))
 
 def generate_feed():
     articles = Article.objects.filter(published__lt=datetime.datetime.now()).order_by('-published')[:NUM_FEED]
