@@ -17,6 +17,7 @@ class FeedArticle(object):
             self.html = entry.content[0].value
         except AttributeError:
             self.html = '<p>' + entry.summary + '</p>'
+        self.teaser = entry.summary
         try:
              parsed = entry.updated_parsed
         except AttributeError:
