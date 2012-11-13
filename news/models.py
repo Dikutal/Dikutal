@@ -16,7 +16,7 @@ class Article(models.Model):
     last_edited = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField()
-    front_image = models.ForeignKey(Attachment)
+    front_image = models.ForeignKey(Attachment, null=True, blank=True)
     event_start = models.DateTimeField(null=True, blank=True)
     event_end = models.DateTimeField(null=True, blank=True)
     event_location = models.CharField(max_length=100, null=True, blank=True)
