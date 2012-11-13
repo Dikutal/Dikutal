@@ -7,5 +7,5 @@ from django.core.exceptions import ValidationError
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ('title', 'teaser', 'content', 'image',
+        fields = ('title', 'teaser', 'content', 'front_image',
                   'event_start', 'event_end', 'event_location')
