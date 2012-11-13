@@ -57,7 +57,11 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title', 'slug', 'author', 'created', 'last_edited', 'is_published']
     list_filter = ('author__username', 'published')
     search_fields = ['title', 'author__username', 'teaser', 'content', 'event_location']
-
+    
+    def __init__(self, model, admin_site):
+        super(ArticleAdmin, self).__init__(model, admin_site)
+        Article.admin_site = admin_site
+    
     def get_form(self, request, obj=None, **kwargs):
         form = super(ArticleAdmin, self).get_form(request, obj, **kwargs)
         form.base_fields['author'].initial = request.user
