@@ -1,0 +1,8 @@
+{% extends "master.html" %}
+
+{% block content %}
+<figure class="image">
+  <p>{{ attachment.description }}</p>
+  <p><img src="/media/{{ attachment.file.name }}" alt="{{ attachment.description }}"></p>
+</figure>
+{% endblock content %}

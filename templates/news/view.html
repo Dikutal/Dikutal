@@ -24,7 +24,7 @@
         <h1>{{ article.title }}</h1>
     </header>
 
-    <figure class="image"><img src="{{ article.image.url }}"></figure>
+    <figure class="image"><img src="/media/{{ article.front_image.url }}"></figure>
     <section class="teaser">{{ article.teaser|markdown }}</section>
     <section class="bodytext" id="content">{{ article.content|markdown }}</section>
 </article>

@@ -11,6 +11,14 @@ class Attachment(models.Model):
     def __unicode__(self):
         return self.file.name
 
+    @models.permalink
+    def url(self):
+        return ('attachments.views.view', (), {
+                'id': self.id})
+
+    def get_absolute_url(self):
+        return self.url()
+
 class AttachmentAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
