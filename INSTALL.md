@@ -10,6 +10,7 @@ Requirements for installation:
 Installation procedure:
 * Create an empty settings_local.py
 * Run ./manage.py syncdb
+* Run ./manage.py migrate
 * Run ./manage.py runserver
 
 If you don't want elasticsearch, install whoosh for Python, and add the following to settings_local.py:

@@ -13,7 +13,9 @@
 
         <time datetime="{{ article.published.isoformat }}" pubdate="pubdate">{{ article.published }}</time>
 
-        <figure class="image"><img style="height:150px;" src="{{ article.image.url }}"></figure>
+        {% if article.front_image != None %}
+        <figure class="image"><img style="height:150px;" src="{{ article.front_image.file.url }}"></figure>
+        {% endif %}
 
         <section class='teaser'>{{ article.teaser|markdown }}</section>
     </article>
