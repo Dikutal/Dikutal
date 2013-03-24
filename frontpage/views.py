@@ -23,8 +23,13 @@ def index(request):
         qa_feed = feedparser.parse("http://qa.dikutal.dk/questions/?type=rss")
         cache.set("qa_cache",qa_feed,FEED_CACHE_DURATION)
 
+    items = qa_feed.entries[0:5]
+    for i in range(5):
+        d = items[i]['published']
+        items[i]['date'] = d[5:7] + '.' + d[7:16]
+
     return render_to_response('frontpage/index.html', RequestContext(request, {
-        'qa_items':    qa_feed.entries[0:5],
+        'qa_items':    items,
         'feed_items':  feed,
         'latest_jobs': jobs,
     }))

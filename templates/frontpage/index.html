@@ -34,7 +34,7 @@
     <h3><span class="mpics">?</span> Latest Questions</h3>
     <ol>
     {% for q in qa_items %}
-        <li><a href="{{ q.links.0.href }}">{{ q.title }}</a></li>
+    <li><a href="{{ q.links.0.href }}">{{ q.title }}</a><span class="smalldate"> {{ q.date }}</span></li>
     {% endfor %}
     </ol>
     <div class="additional"> <a href="http://qa.dikutal.dk/">More questions »</a></div>
