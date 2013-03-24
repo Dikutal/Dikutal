@@ -123,7 +123,7 @@ extractResources as = second snd $ runState (mapM extract as) (startid, M.empty)
                       return v'
 
 imagePath :: T.Text -> T.Text
-imagePath = ("/media/legacy/"<>) . T.takeWhile (/='?') . T.unwords .
+imagePath = ("/static/media/legacy/"<>) . T.takeWhile (/='?') . T.unwords .
             take 1 . T.words . T.pack . takeFileName . T.unpack
 
 main :: IO ()
