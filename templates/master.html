@@ -33,10 +33,10 @@
   <div id="dikutal-header">
     <a href="{% url frontpage %}"><img src="{% static "logo2012.png" %}" alt="" id="small-logo" /></a>
     <ol>
-      <li><a href="/news" class="selected">Articles</a></li>
-      <li><a href="/calendar">Calendar</a></li>
-      <li><a href="/jobs">Jobs</a></li>
-      <li><a href="/planet">Blogs</a></li>
+      <li {% if active_tab == "news" %}class="active"{% endif %}><a href="/news">Articles</a></li>
+      <li {% if active_tab == "calendar" %}class="active"{% endif %}><a href="/calendar">Calendar</a></li>
+      <li {% if active_tab == "jobs" %}class="active"{% endif %}><a href="/jobs">Jobs</a></li>
+      <li {% if active_tab == "planet" %}class="active"{% endif %}><a href="/planet">Blogs</a></li>
       <li><a href="http://qa.dikutal.dk/">Q&A</a></li>
       {% if user.is_staff %}<li><a href="/admin">Admin</a></li>{% endif %}
       {% if user.is_authenticated %}

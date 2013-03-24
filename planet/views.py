@@ -7,8 +7,12 @@ from settings import *
 
 def index(request):
     return render_to_response('planet/index.html', RequestContext(request, {
-            'articles': PlanetFeed.get_articles()}))
+            'articles': PlanetFeed.get_articles(),
+            'active_tab':'planet',
+            }))
 
 def overview(request):
     return render_to_response('planet/overview.html', RequestContext(request, {
-            'articles': PlanetFeed.get_articles()}))
+            'active_tab':'planet',
+            'articles': PlanetFeed.get_articles(),
+            }))

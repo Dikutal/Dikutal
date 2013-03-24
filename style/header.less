@@ -26,13 +26,12 @@ body, #dikutal-header, #dikutal-header ol {
    margin-left: 14px;
   }
 
- ol li a {
-  text-decoration:none;
-  color: @menu_color_text;
- }
+  ol li a {
+   text-decoration:none;
+   color: @menu_color_text;
+  }
 
-  ol li a:hover,
-  ol li a.selected {
+  ol li a:hover {
     color: @menu_hover_color_text;
   }
 
@@ -45,6 +44,10 @@ body, #dikutal-header, #dikutal-header ol {
 
   .menu-right {
     float: right;
+  }
+
+  ol li.active a {
+    color: @menu_hover_color_text;
   }
 }
 

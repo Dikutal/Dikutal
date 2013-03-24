@@ -22,11 +22,15 @@ def index(model, request):
     except EmptyPage:
         latest = paginator.page(paginator.num_pages)
 
-    return render_to_response('news/index.html', RequestContext(request, {'latest': latest}))
+    return render_to_response('news/index.html', RequestContext(request, {
+            'latest': latest,
+            'active_tab': 'news',
+        }))
 
 def view(model, request, id, slug):
     article = get_object_or_404(model, pk=id)
     return render_to_response('news/view.html', RequestContext(request, {
+        'active_tab': 'news',
         'article':  article,
         'can_edit': article.can_edit(request.user),
     }))
@@ -46,6 +50,7 @@ def news_create(request):
         form = ArticleForm()
 
     return render_to_response('news/create.html', RequestContext(request, {
+        'active_tab': 'news',
         'form': form,
     }))
 
@@ -67,6 +72,7 @@ def news_edit(request, id):
         form = ArticleForm(instance=article)
 
     return render_to_response('news/edit.html', RequestContext(request, {
+        'active_tab': 'news',
         'form': form,
     }))
 
