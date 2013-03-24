@@ -18,7 +18,7 @@ class Article(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     content_format = models.CharField(
         max_length=2, choices=formats.FORMATS, default=formats.DEFAULT)
-    slug = models.SlugField()
+    slug = models.SlugField(max_length=128)
     front_image = models.ForeignKey(Attachment, null=True, blank=True)
     event_start = models.DateTimeField(null=True, blank=True)
     event_end = models.DateTimeField(null=True, blank=True)
