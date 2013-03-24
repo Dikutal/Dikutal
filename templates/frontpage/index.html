@@ -24,11 +24,10 @@
             <div class="feed-teaser">
 {% if article.content_format == 'HT' %}
 {{ item.content.teaser|safe }}
-{{ article.content|safe }}
 {% elif article.content_format == 'MD' %}
-{{ article.teaser|markdown }}
+{{ item.content.teaser|markdown }}
 {% elif article.content_format == 'TX' %}
-{{ article.teaser }}
+{{ item.content.teaser }}
 {% endif %}
             </div>
             <span class="smalldate">{{ item.content.author }} &ndash; {{ item.content.published }}</span>
