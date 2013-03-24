@@ -20,6 +20,9 @@ class Attachment(models.Model):
     def get_absolute_url(self):
         return MEDIA_URL + self.file.name
 
+    def is_image(self):
+        return True
+
 class AttachmentAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
