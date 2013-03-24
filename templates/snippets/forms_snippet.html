@@ -1,0 +1,18 @@
+{% load widget_tweaks %}
+
+{{ form.non_field_errors }}
+{% for field in form %}
+<div class="control-group {% if field.errors %}error{% endif %}">
+  <label class="control-label">{{field.label_tag}}</label>
+
+  <div class="controls">
+  {% if field.help_text %}
+    <span class="help-block">{{field.help_text}}</span>
+  {% endif %}
+    {{ field|add_class:"input-xlarge" }}
+  {% for error in field.errors %}
+    <span class="help-inline">{{error}}</span>
+  {% endfor %}
+  </div>
+</div>
+{% endfor %}

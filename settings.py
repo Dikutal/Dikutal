@@ -149,6 +149,7 @@ INSTALLED_APPS = (
     'dikucalendar',
     'osqa_integration',
     'haystack',
+    'widget_tweaks'
 )
 
 # A sample logging configuration. The only tangible logging

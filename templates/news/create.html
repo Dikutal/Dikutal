@@ -3,9 +3,14 @@
 {% load markup %}
 
 {% block content %}
+
 <form method="post" enctype="multipart/form-data" action=".">
+    <legend>Create news article</legend>
     {% csrf_token %}
-    {{ form.as_ul }}
-    <input type="submit" value="Create article" />
+    {% include "snippets/forms_snippet.html" %}
+
+    <div class="form-actions">
+      <input type="submit" value="Create article" />
+    </div>
 </form>
 {% endblock content %}

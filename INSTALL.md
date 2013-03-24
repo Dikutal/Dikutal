@@ -4,6 +4,7 @@ Requirements for installation:
     * django
     * django-south
     * django-haystack (version 2: http://haystacksearch.org/ )
+    * django-widget-tweaks
     * markdown
     * feedparser
 
