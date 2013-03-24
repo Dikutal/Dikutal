@@ -17,8 +17,5 @@ class ArticleForm(forms.ModelForm):
             self.fields['front_image'].widget,
             Article._meta.get_field('front_image').rel,
             Article.admin_site)
-#        self.fields['front_image'].queryset = Entity.objects.all()
-#        self.fields['front_image'].widget = widgets.RelatedFieldWidgetWrapper(self.fields['front_image'], Attachment, Article.admin_site)
-#        self.fields['front_image'].queryset = widEntity.objects.all()
         self.fields['event_start'].widget = widgets.AdminSplitDateTime()
         self.fields['event_end'].widget = widgets.AdminSplitDateTime()

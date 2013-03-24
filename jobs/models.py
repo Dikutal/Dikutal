@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib import admin
 from datetime import datetime
+import util.formats as formats
 
 class Company(models.Model):
     # Company concact info
@@ -32,6 +33,8 @@ class CompanyAdmin(admin.ModelAdmin):
 class Job(models.Model):
     title = models.CharField(max_length=300)
     content = models.TextField()
+    content_format = models.CharField(
+        max_length=2, choices=formats.FORMATS, default=formats.DEFAULT)
     #author = models.ForeignKey(User, related_name='%(class)ss')
     published = models.DateTimeField(blank=True, null=True)
     last_edited = models.DateTimeField(auto_now=True)
@@ -84,7 +87,7 @@ class JobAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('title', 'content', 'published', 'company', 'slug')
+            'fields': ('title', 'content', 'content_format', 'published', 'company', 'slug')
         }),
         ('Job info', {
             'description': "Application information for the job. Leave address out to use the company's address.",

@@ -4,8 +4,9 @@ from django.contrib.admin import BooleanFieldListFilter
 from django.contrib.auth.models import User
 from django.db.models import Q
 from attachments.models import Attachment
-
+import util.formats as formats
 from datetime import datetime
+
 
 class Article(models.Model):
     title = models.CharField(max_length=300)
@@ -15,6 +16,8 @@ class Article(models.Model):
     published = models.DateTimeField(blank=True, null=True)
     last_edited = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    content_format = models.CharField(
+        max_length=2, choices=formats.FORMATS, default=formats.DEFAULT)
     slug = models.SlugField()
     front_image = models.ForeignKey(Attachment, null=True, blank=True)
     event_start = models.DateTimeField(null=True, blank=True)
@@ -45,7 +48,7 @@ class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     fieldsets = (
         (None, {
-            'fields': ('title', 'author', 'teaser', 'content', 'front_image', 'published', 'slug')
+            'fields': ('title', 'author', 'teaser', 'content', 'content_format', 'front_image', 'published', 'slug')
         }),
         ('Event details', {
             'classes': ('collapse', ),
