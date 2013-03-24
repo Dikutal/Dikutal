@@ -34,7 +34,7 @@ class Job(models.Model):
     title = models.CharField(max_length=300)
     content = models.TextField()
     content_format = models.CharField(
-        max_length=2, choices=formats.FORMATS, default=formats.MARKDOWN)
+        max_length=2, choices=formats.FORMATS, default=formats.DEFAULT)
     #author = models.ForeignKey(User, related_name='%(class)ss')
     published = models.DateTimeField(blank=True, null=True)
     last_edited = models.DateTimeField(auto_now=True)
