@@ -27,7 +27,15 @@
     <figure class="image"><img src="/media/{{ article.front_image }}"
                                alt="{{ article.front_image.description }}"></figure>
     <section class="teaser">{{ article.teaser|markdown }}</section>
-    <section class="bodytext" id="content">{{ article.content|markdown }}</section>
+    <section class="bodytext" id="content">
+      {% if article.content_format == 'HT' %}
+      {{ article.content|safe }}
+      {% elif article.content_format == 'MD' %}
+      {{ article.content|markdown }}
+      {% elif article.content_format == 'TX' %}
+      {{ article.content }}
+      {% endif %}
+    </section>
 </article>
 
 
