@@ -1,5 +1,7 @@
 {% extends "master.html" %}
 
+{% load markup %}
+
 <!-- Use a wide bounding block for the front page -->
 {% block wide %}wide{% endblock wide %}
 
@@ -19,7 +21,16 @@
                 </span>
                 <a href='{{ item.content.url }}'>{{ item.content.title }}</a>
             </h2>
-            <div class="feed-teaser">{{ item.content.teaser }}</div>
+            <div class="feed-teaser">
+{% if article.content_format == 'HT' %}
+{{ item.content.teaser|safe }}
+{{ article.content|safe }}
+{% elif article.content_format == 'MD' %}
+{{ article.teaser|markdown }}
+{% elif article.content_format == 'TX' %}
+{{ article.teaser }}
+{% endif %}
+            </div>
             <span class="smalldate">{{ item.content.author }} &ndash; {{ item.content.published }}</span>
             </article>
             {% endfor %}
