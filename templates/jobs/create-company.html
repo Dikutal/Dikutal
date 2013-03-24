@@ -5,7 +5,12 @@
 {% block content %}
 <form method="post" enctype="multipart/form-data" action=".">
     {% csrf_token %}
-    {{ form.as_ul }}
-    <input type="submit" value="Add company" />
+    <h3>Company information</h3>
+    {% for field in form %}
+    {% include 'snippets/forms_snippet.html' %}
+    {% endfor %}
+    <div class="form-actions">
+      <input type="submit" value="Add company" />
+    </div>
 </form>
 {% endblock content %}

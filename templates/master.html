@@ -11,6 +11,7 @@
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   <script src="{% static "less-1.3.0.min.js" %}" type="text/javascript"></script>
 
+
   <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
   <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css" />
   <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/static/admin/css/ie.css" /><![endif]-->
@@ -26,6 +27,25 @@
   <script type="text/javascript" src="/static/admin/js/calendar.js"></script>
   <script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
   <script type="text/javascript" src="/static/admin/js/collapse.js"></script>
+
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+  <script type="text/javascript">
+    $(function() {
+      $(".accordion h3").click(function() {
+
+        var panel = $(this).next();
+        var isOpen = panel.is(':visible');
+        // open or close as necessary
+        panel[isOpen? 'slideUp': 'slideDown']()
+          // trigger the correct custom event
+          .trigger(isOpen? 'hide': 'show');
+
+        // stop the link from causing a pagescroll
+        return false;
+      }).append('<span style="float:right">&rsaquo;</span>');;
+    });
+  </script>
 
   <title>Dikutal - </title>
   {% block head_extra %}{% endblock head_extra %}

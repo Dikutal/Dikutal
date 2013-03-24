@@ -3,13 +3,31 @@
 {% load markup %}
 
 {% block content %}
-<p><a href='/jobs/create-company/'>Create company</a></p>
+
 <form method="post" enctype="multipart/form-data" action=".">
+  <p><strong>Make sure the company exists </strong><a target="_blank" href='/jobs/create-company/'>Create company</a>.</p>
   <legend>Create job</legend>
     {% csrf_token %}
-    {% include "snippets/forms_snippet.html" %}
+    <div class="accordion">
+      <h3>Job description</h3>
+      <div>
+        {% include "snippets/forms_snippet.html" with field=form.title %}
+        {% include "snippets/forms_snippet.html" with field=form.content %}
+        {% include "snippets/forms_snippet.html" with field=form.salary %}
+
+        {% include "snippets/forms_snippet.html" with field=form.deadline %}
+      </div>
+      <h3>Company info</h3>
+      <div>
+        {% include "snippets/forms_snippet.html" with field=form.company %}
+        <span class="help-inline">Is your company not listed? <a href="/jobs/create-company">Create it</a> and set this later.</span>
+      </div>
+    </div>
+
+    
     <div class="form-actions">
       <input type="submit" value="Add job" />
+
     </div>
 </form>
 {% endblock content %}

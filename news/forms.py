@@ -3,7 +3,7 @@ from django.forms.widgets import DateTimeInput
 from news.models import Article
 from attachments.models import Attachment
 from django.core.exceptions import ValidationError
-from django.contrib.admin import widgets   
+from django.contrib.admin import widgets
 
 # Maybe use BetterModelForm from https://github.com/carljm/django-form-utils ?
 class ArticleForm(forms.ModelForm):
@@ -17,5 +17,3 @@ class ArticleForm(forms.ModelForm):
             self.fields['front_image'].widget,
             Article._meta.get_field('front_image').rel,
             Article.admin_site)
-        self.fields['event_start'].widget = widgets.AdminSplitDateTime()
-        self.fields['event_end'].widget = widgets.AdminSplitDateTime()
