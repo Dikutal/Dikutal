@@ -27,12 +27,12 @@ if __name__ == '__main__':
             teaser = f.read()
         with open(sys.argv[4]) as f:
             content = f.read()
-        import_legacy_article(sys.argv[1],
-                              sys.argv[2],
-                              teaser,
-                              content,
-                              sys.argv[5],
-                              sys.argv[6])
+        import_legacy_article(sys.argv[1].decode('utf-8'),
+                              sys.argv[2].decode('utf-8'),
+                              teaser.decode('utf-8'),
+                              content.decode('utf-8'),
+                              sys.argv[5].decode('utf-8'),
+                              sys.argv[6].decode('utf-8'))
     except IndexError:
         print '''\
 Usage: %s TITLE AUTHOR TEASER_FILE CONTENT_FILE PUBLISHED SLUG

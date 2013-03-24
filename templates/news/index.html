@@ -17,7 +17,15 @@
         <figure class="image"><img style="height:150px;" src="{{ article.front_image.file.url }}"></figure>
         {% endif %}
 
-        <section class='teaser'>{{ article.teaser|markdown }}</section>
+        <section class='teaser'>
+{% if article.content_format == 'HT' %}
+{{ article.teaser|safe }}
+{% elif article.content_format == 'MD' %}
+{{ article.teaser|markdown }}
+{% elif article.content_format == 'TX' %}
+{{ article.teaser }}
+{% endif %}
+        </section>
     </article>
     {% endfor %}
    </div>
