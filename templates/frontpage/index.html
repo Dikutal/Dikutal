@@ -33,10 +33,9 @@
   <section  id="qabox" class="box">
     <h3><span class="mpics">?</span> Latest Questions</h3>
     <ol>
-      <li><a href="http://qa.dikutal.dk/questions/695/">How do I set up Emacs for editing LaTeX?</a> <span class="smalldate">18.&nbsp;Oct.&nbsp;2012</span></li>
-      <li><a href="http://qa.dikutal.dk/questions/105/">What are the closest places to get food?</a> <span class="smalldate">3.&nbsp;Oct.&nbsp;2012</span></li>
-      <li><a href="http://qa.dikutal.dk/questions/28/">How do I print on DIKUs printers from my Mac OS X laptop?</a> <span class="smalldate">1.&nbsp;Oct.&nbsp;2012</span></li>
-      <li><a href="http://qa.dikutal.dk/questions/667/">How do I contact the students of DIKU?</a> <span class="smalldate">21.&nbsp;Sep.&nbsp;2012</span></li>
+    {% for q in qa_items %}
+        <li><a href="{{ q.links.0.href }}">{{ q.title }}</a></li>
+    {% endfor %}
     </ol>
     <div class="additional"> <a href="http://qa.dikutal.dk/">More questions »</a></div>
   </section>

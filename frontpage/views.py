@@ -5,6 +5,10 @@ from planet.models import PlanetFeed
 from jobs.models import Job
 from operator import itemgetter
 
+import feedparser
+from settings import *
+from django.core.cache import cache
+
 import datetime
 
 NUM_LATEST=5
@@ -14,7 +18,13 @@ def index(request):
     feed = generate_feed()
     jobs = Job.objects.filter(published__lt=datetime.datetime.now()).order_by('-published')[:NUM_LATEST]
 
+    qa_feed = cache.get("qa_cache")
+    if not qa_feed:
+        qa_feed = feedparser.parse("http://qa.dikutal.dk/questions/?type=rss")
+        cache.set("qa_cache",qa_feed,FEED_CACHE_DURATION)
+
     return render_to_response('frontpage/index.html', RequestContext(request, {
+        'qa_items':    qa_feed.entries[0:5],
         'feed_items':  feed,
         'latest_jobs': jobs,
     }))
