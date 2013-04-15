@@ -144,6 +144,7 @@ INSTALLED_APPS = (
     'south',
     'attachments',
     'news',
+    'artikler',
     'jobs',
     'planet',
     'dikucalendar',
