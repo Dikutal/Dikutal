@@ -15,22 +15,34 @@
         <div>
             {% for item in feed_items %}
             <article>
-            <h2>
-                <span class="mpics">
-                {% if item.type == "article" %}a{% elif item.type == "blogpost" %}b{% else %}?{% endif %}
-                </span>
-                <a href='{{ item.content.url }}'>{{ item.content.title }}</a>
-            </h2>
-            <div class="feed-teaser">
-                {% if item.content_format == 'HT' %}
-                {{ item.content.teaser|safe }}
-                {% elif item.content_format == 'MD' %}
-                {{ item.content.teaser|markdown }}
-                {% elif item.content_format == 'TX' %}
-                {{ item.content.teaser }}
-                {% endif %}
-            </div>
-            <span class="smalldate">{{ item.content.author }} &ndash; {{ item.content.published }}</span>
+                <div class="image">
+                  {% if article.front_image %}
+                  <img src="/media/{{ article.front_image }}"
+                                           alt="{{ article.front_image.description }}" height='90' width='120'>
+                  {% else %}
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" height='90' width='120'>
+                  {% endif %}
+
+
+                </div>
+            
+                <h2>
+                    <a href='{{ item.content.url }}'>{{ item.content.title }}</a>
+                </h2>
+                <div class="feed-teaser">
+                    {% if item.content.content_format == 'HT' %}
+                    {{ item.content.teaser|safe }}
+                    {% elif item.content.content_format == 'MD' %}
+                    {{ item.content.teaser|markdown }}
+                    {% elif item.content.content_format == 'TX' %}
+                    {{ item.content.teaser }}
+                    {% endif %}
+
+                </div>
+                <footer>
+                    <span class="smalldate">{{ item.content.author.get_full_name }} &ndash; <time pubdate>{{ item.content.published }}</time></span>
+                </footer>
+                <div class="clearfix"></div>
             </article>
             {% endfor %}
         </div>

@@ -80,10 +80,11 @@ h1 {
 
 
 #comment-container {
-  margin-top: 10px;
+  margin: 20px auto;
   padding-top: 10px;
   width: 500px;
-  border-top: 2px solid #888;
+
+  border-top: 1px solid #ccc;
 
   #comment-count {
       font-size: 150%;
@@ -235,7 +236,7 @@ h1 {
 
 #frontpage-feed {
     article {
-        padding-left: 0.5em;
+        padding: 0.5em 0.5em 0.5em 150px;
         border-bottom: 1px dotted gray;
     }
     article:last-of-type {
@@ -244,5 +245,24 @@ h1 {
 
     h2 {
         font-size: 12pt;
+    }
+    .image {
+
+      float: left;
+
+      margin-left: -152px;
+
+      font-size: 12pt;
+      //margin-top: 1em;
+
+      padding: 1em;
+
+      width: 120px;
+      height: 90px;
+
+      img {
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+      }
     }
 }
