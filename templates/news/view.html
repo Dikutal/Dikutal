@@ -3,6 +3,7 @@
 {% load markup %}
 {% load comments %}
 {% load gravatar %}
+{% load widget_tweaks %}
 
 {% block head_extra %}
 <link rel="canonical" href="{{ article.url }}">
@@ -12,20 +13,24 @@
 
 <article class="article">
     <div class="metadata">
-      <span class="author">{{ article.author.get_full_name }}</span>, 
-      <time datetime="{{ article.published.isoformat }}" pubdate="pubdate">{{ article.published|date:"d. F Y" }}</time>
-          {% if can_edit %}
+      {% if can_edit %}
       <a href="{% url news.views.news_edit id=article.id %}"><span class="mpics">r</span></a>
-    {% endif %}
-
+      {% endif %}
+      <span class="author">{{ article.author.get_full_name }}</span>,
+      <time datetime="{{ article.published.isoformat }}" pubdate="pubdate">{{ article.published|date:"d. F Y" }}</time>
     </div>
 
     <header>
         <h1>{{ article.title }}</h1>
     </header>
-
-    <figure class="image"><img src="/media/{{ article.front_image }}"
-                               alt="{{ article.front_image.description }}"></figure>
+    
+    <figure class="image">
+      {% if article.front_image %}
+      <img src="/media/{{ article.front_image }}"
+                               alt="{{ article.front_image.description }}">
+      {% endif %}
+    </figure>
+    
     <section class="teaser">{{ article.teaser|markdown }}</section>
     <section class="bodytext" id="content">
       {% if article.content_format == 'HT' %}
@@ -70,14 +75,22 @@
     {% get_comment_form for article as form %}
     <form action="{% comment_form_target %}" method="POST" id="replyform">
     {% csrf_token %}
-    {{ form.comment }}
     {{ form.honeypot }}
     {{ form.content_type }}
     {{ form.object_pk }}
     {{ form.timestamp }}
     {{ form.security_hash }}
     <input type="hidden" name="next" value="{{ article.url }}">
-    <button type="submit" class="savebutton">Add comment</button>
+
+    <div class="control-group">
+      <label class="control-label">Comment</label>
+      <div class="controls">
+        {{ form.comment|add_class:"input-block-level"}}
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="submit">Add comment</button>
+    </div>
     </form>
 {% else %}
     <p>Please <a href="{% url login %}">log in</a> to leave a comment.</p>

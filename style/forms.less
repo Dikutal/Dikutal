@@ -7,6 +7,21 @@
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
+ @inputHeight: 30px;
+ // Box sizing
+.box-sizing(@boxmodel) {
+  -webkit-box-sizing: @boxmodel;
+     -moz-box-sizing: @boxmodel;
+          box-sizing: @boxmodel;
+}
+// Block level inputs
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: @inputHeight; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
+  .box-sizing(border-box); // Makes inputs behave like true block-level elements
+}
+
 .clearfix {
   *zoom: 1;
 }

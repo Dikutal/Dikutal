@@ -22,13 +22,13 @@
                 <a href='{{ item.content.url }}'>{{ item.content.title }}</a>
             </h2>
             <div class="feed-teaser">
-{% if article.content_format == 'HT' %}
-{{ item.content.teaser|safe }}
-{% elif article.content_format == 'MD' %}
-{{ item.content.teaser|markdown }}
-{% elif article.content_format == 'TX' %}
-{{ item.content.teaser }}
-{% endif %}
+                {% if item.content_format == 'HT' %}
+                {{ item.content.teaser|safe }}
+                {% elif item.content_format == 'MD' %}
+                {{ item.content.teaser|markdown }}
+                {% elif item.content_format == 'TX' %}
+                {{ item.content.teaser }}
+                {% endif %}
             </div>
             <span class="smalldate">{{ item.content.author }} &ndash; {{ item.content.published }}</span>
             </article>

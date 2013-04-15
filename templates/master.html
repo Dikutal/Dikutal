@@ -30,43 +30,28 @@
 
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
-  <script type="text/javascript">
-    $(function() {
-      $(".accordion h3").click(function() {
-
-        var panel = $(this).next();
-        var isOpen = panel.is(':visible');
-        // open or close as necessary
-        panel[isOpen? 'slideUp': 'slideDown']()
-          // trigger the correct custom event
-          .trigger(isOpen? 'hide': 'show');
-
-        // stop the link from causing a pagescroll
-        return false;
-      }).append('<span style="float:right">&rsaquo;</span>');;
-    });
-  </script>
-
   <title>Dikutal - </title>
   {% block head_extra %}{% endblock head_extra %}
 </head>
 <body>
   <div id="dikutal-header">
-    <a href="{% url frontpage %}"><img src="{% static "logo2012.png" %}" alt="" id="small-logo" /></a>
-    <ol>
-      <li {% if active_tab == "news" %}class="active"{% endif %}><a href="/news">Articles</a></li>
-      <li {% if active_tab == "calendar" %}class="active"{% endif %}><a href="/calendar">Calendar</a></li>
-      <li {% if active_tab == "jobs" %}class="active"{% endif %}><a href="/jobs">Jobs</a></li>
-      <li {% if active_tab == "planet" %}class="active"{% endif %}><a href="/planet">Blogs</a></li>
-      <li><a href="http://qa.dikutal.dk/">Q&amp;A</a></li>
-      {% if user.is_staff %}<li><a href="/admin">Admin</a></li>{% endif %}
-      {% if user.is_authenticated %}
-        <li class="menu-right"><a href="{% url django.contrib.auth.views.logout %}">Log out</a></li>
-      {% else %}
-        <li class="menu-right"><a href="{% url django.contrib.auth.views.login %}">Log in</a></li>
-      {% endif %}
+    <div class="container">
+      <a href="{% url frontpage %}"><img src="{% static "logo2012.png" %}" alt="" id="small-logo" /></a>
+      <ol>
+        <li {% if active_tab == "news" %}class="active"{% endif %}><a href="/news">Articles</a></li>
+        <li {% if active_tab == "calendar" %}class="active"{% endif %}><a href="/calendar">Calendar</a></li>
+        <li {% if active_tab == "jobs" %}class="active"{% endif %}><a href="/jobs">Jobs</a></li>
+        <li {% if active_tab == "planet" %}class="active"{% endif %}><a href="/planet">Blogs</a></li>
+        <li><a href="http://qa.dikutal.dk/">Q&amp;A</a></li>
+        {% if user.is_staff %}<li><a href="/admin">Admin</a></li>{% endif %}
+        {% if user.is_authenticated %}
+          <li class="menu-right"><a href="{% url django.contrib.auth.views.logout %}">Log out</a></li>
+        {% else %}
+          <li class="menu-right"><a href="{% url django.contrib.auth.views.login %}">Log in</a></li>
+        {% endif %}
 
-    </ol>
+      </ol>
+    </div>
   </div>
 
   <!-- We wan't certain pages to be able to change this to "wide" -->
