@@ -16,4 +16,7 @@
 {% else %}
     <p>No jobs are available.</p>
 {% endif %}
+{% if user.is_authenticated %}
+<p><a href="/jobs/create">Add a job</a>.</p>
+{% endif %}
 {% endblock content %}

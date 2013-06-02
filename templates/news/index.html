@@ -46,6 +46,9 @@
         </span>
     </nav>
 {% else %}
-    <p>No articles. <a href="/news/create">Write one</a></p>
+    <p>No articles.</p>
+{% endif %}
+{% if user.is_authenticated %}
+<p><a href="/news/create">Write an article</a>.</p>
 {% endif %}
 {% endblock content %}
