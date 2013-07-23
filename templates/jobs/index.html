@@ -5,10 +5,20 @@
 {% block content %}
 {% if job_list %}
     <ul>
+    <table>
+    <td><b>Published</b></td>
+    <td><b>Title</b></td>
+    <td><b>Company</b></td>
+    <td><b>Deadline</b></td>
     {% for job in job_list %}
-        <li><a href="{{ job.id }}/">{{ job.title }}</a></li>
+        <tr>
+        <td>{{ job.published|date:"d. M Y" }}</td>
+        <td><a href="{{ job.id }}/">{{ job.title }}</a></td>
+        <td>{{ job.company.company_name }}</td>
+        <td>{{ job.deadline|date:"d. M Y" }}</td>
+        </tr>
     {% endfor %}
-
+    </table>
     {% for job in feed_job_list %}
         <li><a href="/jobs/fromfeed_magic_id/">{{ job.title }}</a></li>
     {% endfor %}
