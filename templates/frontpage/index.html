@@ -1,5 +1,6 @@
 {% extends "master.html" %}
 
+{% load staticfiles %}
 {% load markup %}
 
 <!-- Use a wide bounding block for the front page -->
@@ -19,6 +20,9 @@
                   {% if article.front_image %}
                   <img src="/media/{{ article.front_image }}"
                                            alt="{{ article.front_image.description }}" height='90' width='120'>
+                  {% else %}
+                  <img src="{% static "placeholder-thumb.png" %}"
+                                           alt="This article lacks a front page image." height='90' width='120'>
                   {% endif %}
 
 
