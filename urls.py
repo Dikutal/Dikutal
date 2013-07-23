@@ -28,4 +28,5 @@ urlpatterns = patterns('',
     url(r'^calendar/', include('dikucalendar.urls')),
     url(r'^attachments/', include('attachments.urls')),
     url(r'^search/', include('haystack.urls')),
+    url(r'^about/', include('about.urls')),
 )
