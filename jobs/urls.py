@@ -22,5 +22,6 @@ urlpatterns = patterns('jobs.views',
     (r'create/', 'create'),
     (r'create-company/', 'create_company'),
     (r'^(?P<id>\d+)/(?P<slug>.*)$', 'jobs_view'),
+    (r'^companies/(?P<id>\d+)$', 'companies_view'),
     (r'^feed/$', LatestJobs()),
 )

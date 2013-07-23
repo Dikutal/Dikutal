@@ -1,7 +1,7 @@
 Requirements for installation:
 * Python 2.7
 * The following Python modules:
-    * django (1.4.3 guaranteed to work, perhaps other versions too)
+    * django (1.4.(3--5) guaranteed to work, probably all 1.4.* versions)
     * django-south
     * django-haystack (version 2: http://haystacksearch.org/ )
     * django-widget-tweaks

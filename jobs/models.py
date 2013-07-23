@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib import admin
 from datetime import datetime
 import util.formats as formats
+from django.contrib.auth.models import User
 
 class Company(models.Model):
     # Company concact info
@@ -12,16 +13,31 @@ class Company(models.Model):
     company_address = models.TextField(blank=True)
     company_phone = models.CharField(max_length=100, blank=True)
 
+    created = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, related_name='%(class)ss')
+
     def __unicode__(self):
         return self.company_name
 
     class Meta:
         verbose_name_plural = 'companies'
 
+    @models.permalink
+    def url(self):
+        return ('jobs.views.companies_view', (), {
+                'id': self.id})
+
+    def get_absolute_url(self):
+        return self.url()
+
+    def can_edit(self, user):
+        return user == self.author or user.is_staff
+        
+
 class CompanyAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
-            'fields': ('company_name', 'company_address',
+            'fields': ('author', 'company_name', 'company_address',
                        'company_description', 'company_contact',
                        'company_email', 'company_phone')
         }),
@@ -35,7 +51,7 @@ class Job(models.Model):
     content = models.TextField()
     content_format = models.CharField(
         max_length=2, choices=formats.FORMATS, default=formats.DEFAULT)
-    #author = models.ForeignKey(User, related_name='%(class)ss')
+    author = models.ForeignKey(User, related_name='%(class)ss')
     published = models.DateTimeField(blank=True, null=True)
     last_edited = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -64,8 +80,7 @@ class Job(models.Model):
         return self.url()
 
     def can_edit(self, user):
-        # return user == self.author or user.is_staff
-        return user.is_staff
+        return user == self.author or user.is_staff
 
     def is_shown(self):
         now = datetime.now()
@@ -87,7 +102,7 @@ class JobAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('title', 'content', 'content_format', 'published', 'company', 'slug')
+            'fields': ('author', 'title', 'content', 'content_format', 'published', 'company', 'slug')
         }),
         ('Job info', {
             'description': "Application information for the job. Leave address out to use the company's address.",

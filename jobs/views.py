@@ -30,16 +30,6 @@ def index(request):
             'feed_job_list': feed_job_list,
         }))
 
-def view(model, request, id, slug):
-    job = get_object_or_404(model, pk=id)
-    return render_to_response('jobs/detail.html', RequestContext(request, {
-        'active_tab': 'jobs',
-        'job': job,
-        'job_address': job.address or job.company.company_address,
-        'show': job.is_shown(),
-        'can_edit': job.can_edit(request.user),
-    }))
-
 @login_required
 @csrf_protect
 def create(request):
@@ -68,7 +58,6 @@ def create_company(request):
         if form.is_valid():
             article = form.save(commit=False)
             article.author = request.user
-            article.published = article.created
             article.save()
             return redirect(article)
     else:
@@ -81,4 +70,20 @@ def create_company(request):
 
 
 def jobs_view(request, id, slug):
-    return view(Job, request, id, slug)
+    job = get_object_or_404(Job, pk=id)
+    return render_to_response('jobs/detail.html', RequestContext(request, {
+        'active_tab': 'jobs',
+        'job': job,
+        'job_address': job.company.company_address or job.address,
+        'show': job.is_shown(),
+        'can_edit': job.can_edit(request.user),
+    }))
+
+def companies_view(request, id):
+    company = get_object_or_404(Company, pk=id)
+    return render_to_response('jobs/company_detail.html', RequestContext(request, {
+        'active_tab': 'jobs',
+        'company': company,
+        'can_edit': company.can_edit(request.user),
+    }))
+
