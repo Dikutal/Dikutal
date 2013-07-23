@@ -7,15 +7,17 @@
 
 <p><a href='overview'>Overview</a></p>
 
+<section id="planet-feed">
 {% for article in articles %}
-<div class='planetarticle'>
-  <h1><a href='{{ article.url }}'>{{ article.title }}</a></h1>
-  <h2>{{ article.updated.isoformat }}</h2>
+<article>
+  <h2><a href='{{ article.url }}'>{{ article.title }}</a></h2>
+  <div class="smalldate">{{ article.feed.title }} &ndash; <time pubdate>{{ article.updated }}</time></div>
   <div class='planetarticle'>
     {{ article.html|safe }}
   </div>
-</div>
+</article>
 {% endfor %}
+</section>
 {% if not articles %}
 <p>No articles.</p>
 {% endif %}
