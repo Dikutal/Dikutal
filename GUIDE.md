@@ -1,6 +1,7 @@
 # Guide til brug af den nye Dikutal
 
-Dette er en guide til hvordan man bruger den nye Dikutal.
+Dette er en guide til hvordan man bruger den nye Dikutal.  Guiden er ikke færdig
+(for siden er ikke færdig).
 
 
 ## Kalender
@@ -10,6 +11,9 @@ forsiden.  På den nye Dikutal er det simplere: Man laver altid en artikel, og
 hvis den artikel dækker en begivenhed på en bestemt dato, tilføjer man et link i
 kalenderen til artiklen.  Kalenderen kan også indeholde links til andet end
 artikler på Dikutal hvis det er relevant.
+
+Når man laver en artikel kan man sætte datoer.  Vi kan nok lave noget der
+automatisk indsætter det i kalenderen.
 
 
 ## Brugeroprettelse

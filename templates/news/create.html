@@ -21,10 +21,7 @@
       <div>
           {% csrf_token %}
         {% include 'snippets/forms_snippet.html' with field=form.title %}
-        <div class="control-group">
-          <label class="control-label">Teaser</label>
-          <div class="controls">{{form.teaser|add_class:"input-xxlarge"|attr:"rows:4"}}</div>
-        </div>
+        {% include 'snippets/forms_snippet.html' with field=form.teaser %}
       </div>
       
       <h3>Content</h3>
