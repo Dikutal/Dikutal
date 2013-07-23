@@ -4,12 +4,12 @@
 {% load widget_tweaks %}
 {% block head_extra %}
 <link rel="stylesheet" type="text/css"
-      href="/static/datepicker/css/datepicker.css">
+      href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 <script type="text/javascript"
-        src="/static/datepicker/js/bootstrap-datepicker.js"></script>
+        src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('.date').datepicker();
+        $('.date input').datepicker( { "dateFormat": "yy-mm-dd" } );
     });
 </script>
 {% endblock head_extra %}

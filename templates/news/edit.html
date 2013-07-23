@@ -3,6 +3,18 @@
 {% load markup %}
 {% load widget_tweaks %}
 
+{% block head_extra %}
+    <link rel="stylesheet" type="text/css"
+          href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <script type="text/javascript"
+            src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.date input').datepicker( { "dateFormat": "yy-mm-dd" } );
+        });
+    </script>
+{% endblock head_extra %}
+
 {% block content %}
 <form method="post" enctype="multipart/form-data" action=".">
     {% csrf_token %}
@@ -26,19 +38,19 @@
 
       <h3>Date and time</h3>
       <div>
-        <div class="control-group">
-          <label class="control-label">Event times</label>
-          <div class="controls controls-row">
-            <div class="input-append datepicker">
-              {{form.event_end|add_class:"input-large"|attr:"id:eventEnd"}}
-              <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar">
-      </i></span>
-            </div>
-            <div class="input-append datepicker">
-              {{form.event_start|add_class:"input-large"|attr:"id:eventStart"}}
-              <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar">
-      </i></span>
-            </div>
+          <div class="control-group">
+              <label class="control-label">Event times</label>
+              <span class="help-block">Input event dates in ISO format.</span>
+              <div class="controls controls-row">
+                  <div class="input-append date">
+                      {{form.event_end|add_class:"input-large"|attr:"id:eventEnd"}}
+                      <span class="add-on">Start</span>
+                  </div>
+                  <div class="input-append date">
+                      {{form.event_start|add_class:"input-large"|attr:"id:eventStart"}}
+                      <span class="add-on">End</span>
+                  </div>
+              </div>
           </div>
         </div>
       </div>
