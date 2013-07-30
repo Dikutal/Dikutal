@@ -7,9 +7,18 @@
       href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 <script type="text/javascript"
         src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script type="text/javascript"
+        src="/static/jquery-ui-timepicker-addon.js"></script>
+<link type="text/css"
+      rel="stylesheet"
+      href="/static/jquery-ui-timepicker-addon.css" />
 <script type="text/javascript">
     $(document).ready(function() {
-        $('.date input').datepicker( { "dateFormat": "yy-mm-dd" } );
+//        $('.date input').datepicker( { "dateFormat": "yy-mm-dd" } );
+          $('.date input').datetimepicker( {
+    "dateFormat": "yy-mm-dd",
+    "timeFormat": "hh:mm"
+    });
     });
 </script>
 {% endblock head_extra %}
@@ -31,20 +40,29 @@
       </div>
 
 
-      <h3>Date and time</h3>
+      <h3>Event times</h3>
       
       <div>
         <div class="control-group">
-          <label class="control-label">Event times</label>
-          <span class="help-block">Input event dates in ISO format.</span>
+          <label class="control-label">If the article is associated with an
+          event.</label>
+          <span class="help-block">Input date and time in YY-MM-DD[ HH[:mm[:ss]]].</span>
           <div class="controls controls-row">
             <div class="input-append date">
-              {{form.event_end|add_class:"input-large"|attr:"id:eventEnd"}}
+              {{form.event_start|add_class:"input-large"|attr:"id:eventEnd"}}
               <span class="add-on">Start</span>
             </div>
             <div class="input-append date">
-              {{form.event_start|add_class:"input-large"|attr:"id:eventStart"}}
+              {{form.event_end|add_class:"input-large"|attr:"id:eventStart"}}
               <span class="add-on">End</span>
+            </div>
+            <div class="control-group error">
+            {% for error in form.event_start.errors %}
+            <span class="help-inline">{{error}}</span>
+            {% endfor %}
+            {% for error in form.event_end.errors %}
+            <span class="help-inline">{{error}}</span>
+            {% endfor %}
             </div>
           </div>
         </div>

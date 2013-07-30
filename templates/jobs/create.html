@@ -24,12 +24,8 @@
       <div>
         {% include "snippets/forms_snippet.html" with field=form.title %}
         {% include "snippets/forms_snippet.html" with field=form.content %}
-        {% include "snippets/forms_snippet.html" with field=form.salary %}
-
-        <div class="input-append date">
-          {{form.deadline|add_class:"input-large"|attr:"id:deadline"}}
-              <span class="add-on">Deadline</span>
-            </div>
+        {% include "snippets/forms_snippet.html" with field=form.salary label_extra='(optional)' %}
+        {% include "snippets/forms_snippet.html" with field=form.deadline label_extra='(optional)' format_as_date='1' %}
       </div>
       <h3>Company info</h3>
       <div>

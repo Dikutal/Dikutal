@@ -1,15 +1,22 @@
 {% load widget_tweaks %}
 
 <div class="control-group {% if field.errors %}error{% endif %}">
-  <label class="control-label">{{field.label}}</label>
+  <label class="control-label">{{field.label}} {{label_extra}}</label>
 
   <div class="controls">
-  {% if field.help_text %}
+    {% if field.help_text %}
     <span class="help-block">{{field.help_text}}</span>
-  {% endif %}
+    {% endif %}
+    {% if format_as_date %}
+    <div class="input-append date">
+      {{form.deadline|add_class:"input-large"}}
+      <span class="add-on">Date</span>
+    </div>
+    {% else %}
     {{ field|add_class:"input-xxlarge" }}
-  {% for error in field.errors %}
+    {% endif %}
+    {% for error in field.errors %}
     <span class="help-inline">{{error}}</span>
-  {% endfor %}
+    {% endfor %}
   </div>
 </div>
