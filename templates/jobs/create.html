@@ -1,7 +1,18 @@
 {% extends "master.html" %}
 
 {% load markup %}
-
+{% load widget_tweaks %}
+{% block head_extra %}
+<link rel="stylesheet" type="text/css"
+      href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<script type="text/javascript"
+        src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.date input').datepicker( { "dateFormat": "yy-mm-dd" } );
+    });
+</script>
+{% endblock head_extra %}
 {% block content %}
 
 <form method="post" enctype="multipart/form-data" action=".">
@@ -15,7 +26,10 @@
         {% include "snippets/forms_snippet.html" with field=form.content %}
         {% include "snippets/forms_snippet.html" with field=form.salary %}
 
-        {% include "snippets/forms_snippet.html" with field=form.deadline %}
+        <div class="input-append date">
+          {{form.deadline|add_class:"input-large"|attr:"id:deadline"}}
+              <span class="add-on">Deadline</span>
+            </div>
       </div>
       <h3>Company info</h3>
       <div>
