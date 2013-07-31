@@ -24,8 +24,11 @@ artikler og jobfolk der vil oprette jobs skal have brugere på Dikutal.  Andre
 folk der bruger Dikutal skal kun kunne lave kommentarer og behøver ikke brugere.
 
 For at få en bruger sender man en e-mail til dikutal@diku.dk, eller vi tilbyder
-folk at give dem brugere.
+folk at give dem brugere.  Når en person har fået en bruger, sender vi
+instruktioner til brug af Dikutal.
 
 
+### Nyt løsen
 
-
+I instruktionerne skal bl.a. stå at de kan få et nyt løsen hvis de har glemt
+deres gamle, ved at gå ind på [http://dikutal.dk/accounts/password/reset/]().
