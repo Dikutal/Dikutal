@@ -31,4 +31,28 @@ instruktioner til brug af Dikutal.
 ### Nyt løsen
 
 I instruktionerne skal bl.a. stå at de kan få et nyt løsen hvis de har glemt
-deres gamle, ved at gå ind på [http://dikutal.dk/accounts/password/reset/]().
+deres gamle, ved at gå ind på
+[http://dikutal.dk/accounts/password/reset/](). TODO dette skal gøres simplere
+
+
+## Integration med DIKU Q&A
+
+Der er ingen integration med DIKU Q&A.  Den eneste gode grund til at integrere
+med Q&A ville være at folk der har brugere på Q&A kunne lave autentificerede
+kommentarer på Dikutal.  Vi prøvede lidt at integrere, men det viste sig at være
+for bøvlet.  Desuden har vi set på den gamle Dikutal at folk ikke laver specielt
+mange kommentarer, og egentlig ønsker vi også at reel diskussion skal foregå på
+Q&A.  At autentificering på kommentarlavning ikke er normalt betyder måske også at
+folk der ikke er på Q&A er mere villig til at komme med en relevant kommentar
+end hvis registrering var mere normalt.
+
+Hvis nogen på et tidspunkt alligevel får lyst til at prøve at integrere med Q&A,
+er følgende oplysninger nok nyttige:
+
+* Dikutal bruger Djangos indbyggede django.contrib.auth til brugerhåndtering.
+  OSQA gør vist det samme, men 'auth_*-tabellerne i hver database er nok det
+  eneste de har tilfælles, så integrering den vej er nok lidt bøvlet.
+* OSQA har nogle klasser i "forum/actions/user.py" hvori man fx kan tilføje kald
+  når en bruger oprettes eller brugerinformation ændres.  Dikutal har scriptet
+  "bin/import_user.py" der kan tilføje en bruger til Dikutal. Man kunne fx kalde
+  dette script fra de ovennævnte klasser.

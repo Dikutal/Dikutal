@@ -1,5 +1,8 @@
-This is the content management system used by dikutal.dk.
+This is the new content management system for dikutal.dk.
 
-Implementation details:
+See INSTALL.md for an installation guide.
 
-News are in "news".  Legacy news redirects are in "artikler".
+See IMPLEMENTATION.md for a description of the code design.
+
+See GUIDE.md for a description of the hows and whys in the new Dikutal (in
+Danish).

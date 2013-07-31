@@ -52,7 +52,8 @@
     {% if comment_count == 0 %}
     No comments
     {% else %}
-    {{ comment_count }} comment{{ comment_count|pluralize }}
+    {{ comment_count }} comment{{ comment_count|pluralize }}.  Commenters
+    are not authenticated.
     {% endif %}
 </div>
 
