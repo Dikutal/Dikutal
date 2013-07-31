@@ -12,7 +12,7 @@ from jobs.forms import CompanyForm, JobForm
 def index(request):
     articles = Job.objects.filter(
         published__lt=datetime.now()).exclude(
-            deadline__lt=datetime.now()).order_by('-published')
+        deadline__lt=datetime.now()).order_by('-published')
     paginator = Paginator(articles, 10)
 
     page = request.GET.get('page')
@@ -39,6 +39,7 @@ def create(request):
         if form.is_valid():
             article = form.save(commit=False)
             article.author = request.user
+            article.save()
             article.published = article.created
             article.save()
             return redirect(article)
