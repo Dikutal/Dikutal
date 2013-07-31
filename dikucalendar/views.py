@@ -35,12 +35,17 @@ class DIKUCalendar(HTMLCalendar):
             return start == d
         
         events = filter(in_range, self.events)
-        return self.cell(str(day) + str(map(lambda article: article.title, events)))
+        content = '<p>%s</p>' % day + '<ul>' + '\n'.join(map(self.format_article, events)) + '</ul>'
+        return self.cell(content)
 
     def formatmonth(self, year, month):
         self.year, self.month = year, month
         return super(DIKUCalendar, self).formatmonth(year, month)
 
+    @staticmethod
+    def format_article(article):
+        return '<li><a href="%s">%s</a></li>' % (article.url(), article.title)
+        
     @staticmethod
     def cell(data):
         return '<td>%s</td>' % data
