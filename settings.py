@@ -12,13 +12,6 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-# Directory containing the OSQA project directory
-OSQA_PROJECT_DIR = '/home/daniel/projects/dikutal'
-
-dname = realpath(dirname(__file__))
-sys.path[0] = join(dname)
-sys.path.insert(0, join(sys.path[0], OSQA_PROJECT_DIR))
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -180,7 +173,9 @@ DATETIME_FORMAT=r'j. N Y \a\t H:i'
 
 FEED_CACHE_DURATION = 30 * 60 * 24
 
-DATABASE_ROUTERS = ['osqa_integration.routers.OSQARouter']
+DATABASE_ROUTERS = []
+
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 HAYSTACK_CONNECTIONS = {
     'default': {
