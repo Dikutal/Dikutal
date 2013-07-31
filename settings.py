@@ -21,14 +21,6 @@ DATABASES = {
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     },
-    'osqa': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'osqa.db',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-    }
 }
 
 # Local time zone for this installation. Choices can be found here:
@@ -141,7 +133,6 @@ INSTALLED_APPS = (
     'jobs',
     'planet',
     'dikucalendar',
-    'osqa_integration',
     'haystack',
     'widget_tweaks'
 )
