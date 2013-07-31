@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
 import sys
+import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'dikutal.settings'
+
 import django
 from news.models import Article
 import util.formats as formats
