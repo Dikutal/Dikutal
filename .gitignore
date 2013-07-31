@@ -1,7 +1,9 @@
 *.pyc
 *~
+*#*#
 .idea
 settings_local.py
 *.db
 venv
 collected_static
+.searchindex
