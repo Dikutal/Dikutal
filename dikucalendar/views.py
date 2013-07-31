@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.utils.safestring import mark_safe
+from django.utils.html import escape
 from settings import *
 from datetime import date, datetime, timedelta
 from calendar import HTMLCalendar
@@ -44,7 +45,7 @@ class DIKUCalendar(HTMLCalendar):
 
     @staticmethod
     def format_article(article):
-        return '<li><a href="%s">%s</a></li>' % (article.url(), article.title)
+        return '<li><a href="%s">%s</a></li>' % (article.url(), escape(article.title))
         
     @staticmethod
     def cell(data):
