@@ -2,11 +2,15 @@
 
 {% load highlight %}
 
+{% block search_extra %}
+class="active"
+{% endblock search_extra %}
+
 {% block content %}
     <h2>Search</h2>
 
     <form method="get" action=".">
-        <table>
+        <table id="search_form">
             {{ form.as_table }}
             <tr>
                 <td>&nbsp;</td>

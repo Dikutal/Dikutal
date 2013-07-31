@@ -12,7 +12,7 @@ class Article(models.Model):
     title = models.CharField(max_length=300)
     teaser = models.TextField()
     content = models.TextField()
-    author = models.ForeignKey(User, related_name='%(class)ss') # TODO: integrate with OSQA
+    author = models.ForeignKey(User, related_name='%(class)ss')
     published = models.DateTimeField(blank=True, null=True)
     last_edited = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
