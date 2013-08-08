@@ -56,8 +56,8 @@ def index(request):
     return calendar(request, now.year, now.month)
 
 def calendar(request, year, month):
-    cal_html = DIKUCalendar().formatmonth(int(year), int(month))
+#    cal_html = DIKUCalendar().formatmonth(int(year), int(month))
     return render_to_response('calendar/index.html', RequestContext(request, {
         'active_tab': 'calendar',
-        'calendar': mark_safe(cal_html)
+#        'calendar': mark_safe(cal_html)
         }))
