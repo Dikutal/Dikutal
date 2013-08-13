@@ -10,17 +10,17 @@ Requirements for installation:
     * feedparser
 
 Installation procedure:
-* Create an empty settings_local.py
+* Create "settings_local.py" from "settings_local_template.py"
 * Run ./manage.py syncdb
 * Run ./manage.py migrate
 * Run ./manage.py runserver
 
-If you don't want elasticsearch, install whoosh for Python, and add the following to settings_local.py:
+If you want elasticsearch, add the following to your "settings_local.py":
 
     HAYSTACK_CONNECTIONS = {
         'default': {
-            'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-            'PATH': '.searchindex',
-            'STORAGE': 'file',
+            'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+            'URL': 'http://127.0.0.1:9200/',
+            'INDEX_NAME': 'dikutal',
         },
     }
