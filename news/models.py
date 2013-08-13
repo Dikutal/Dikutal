@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib import admin
-from django.contrib.admin import BooleanFieldListFilter
+#from django.contrib.admin import BooleanFieldListFilter
 from django.contrib.auth.models import User
 from django.db.models import Q
 from attachments.models import Attachment
