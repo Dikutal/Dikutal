@@ -86,9 +86,6 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = '02ce-&esgm$us+snzqte3#a2vd3y+mj-p!*r_hgppm3$3s6n3z'
-
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -118,21 +115,21 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'django.contrib.markup',
     'django.contrib.comments',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+
     'south',
+    'haystack',
+    'widget_tweaks',
+    'django_extensions',
+
     'attachments',
     'news',
     'artikler',
     'jobs',
     'planet',
     'dikucalendar',
-    'haystack',
-    'widget_tweaks'
 )
 
 # A sample logging configuration. The only tangible logging
