@@ -2,10 +2,7 @@
 {% load extra_filters %}
 
 {% block content %}
-<p>All times are converted to Denmark time: UTC + 02:00 when DST, and UTC +
-  01:00 when not DST.</p>
-
-<p><a href='overview'>Overview</a></p>
+<p>(All times in Copenhagen time.)</p>
 
 <section id="planet-feed">
 {% for article in articles %}
@@ -13,7 +10,7 @@
   <h2><a href='{{ article.url }}'>{{ article.title }}</a></h2>
   <div class="smalldate">{{ article.feed.title }} &ndash; <time pubdate>{{ article.updated }}</time></div>
   <div class='planetarticle'>
-    {{ article.html|safe }}
+    {{ article.html_short|safe }}
   </div>
 </article>
 {% endfor %}

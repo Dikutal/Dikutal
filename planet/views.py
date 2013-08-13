@@ -8,18 +8,18 @@ from planet.models import PlanetFeed
 from settings import *
 from util.feedparsing import get_feed_articles
 from planet.forms import PlanetForm
+from django.utils.text import Truncator
 
+def shorten_html(h, length):
+    return Truncator(h).words(length, html=True)
 
 def index(request):
+    articles = PlanetFeed.get_articles()
+    for a in articles:
+        a.html_short = shorten_html(a.html, HTML_SHORTEN_LENGTH)
     return render_to_response('planet/index.html', RequestContext(request, {
-            'articles': PlanetFeed.get_articles(),
+            'articles': articles,
             'active_tab':'planet',
-            }))
-
-def overview(request):
-    return render_to_response('planet/overview.html', RequestContext(request, {
-            'active_tab':'planet',
-            'articles': PlanetFeed.get_articles(),
             }))
 
 @login_required
@@ -32,11 +32,11 @@ def planet_create(request):
             blog.author = request.user
             blog.published = datetime.now()
             blog.save()
-            return redirect('/')
+            return redirect('/planet')
     else:
         form = PlanetForm()
 
     return render_to_response('planet/create.html', RequestContext(request, {
-        'active_tab': 'news',
+        'active_tab': 'planet',
         'form': form,
     }))

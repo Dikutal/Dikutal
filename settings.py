@@ -162,7 +162,11 @@ LOGGING = {
 
 DATETIME_FORMAT=r'j. N Y \a\t H:i'
 
-FEED_CACHE_DURATION = 30 * 60 * 24
+# The duration in which to keep the blog feeds cached.
+FEED_CACHE_DURATION = 10 * 60 * 24
+
+# How much to shorten the HTML when showing blog excerpts.
+HTML_SHORTEN_LENGTH = 100
 
 DATABASE_ROUTERS = []
 

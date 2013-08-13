@@ -6,7 +6,7 @@ from util.feedparsing import get_feed_articles
 class PlanetFeed(models.Model):
     title = models.CharField(max_length=300)
     url = models.URLField()
-    owner = models.ForeignKey(User, related_name='%(class)ss', null=True)
+    owner = models.ForeignKey(User, related_name='%(class)ss', null=True, blank=True)
     last_edited = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
