@@ -17,6 +17,7 @@ def view(request, id):
     attachment = get_object_or_404(Attachment, pk=id)
     return render_to_response('attachments/view.html', RequestContext(request, {
         'attachment': attachment,
+        'subtitle': 'Attachments'
     }))
 
 @login_required
@@ -33,6 +34,7 @@ def attachments_create(request):
 
     return render_to_response('attachments/create.html', RequestContext(request, {
         'form': form,
+        'subtitle': 'Upload attachments'
     }))
 
 
@@ -55,5 +57,6 @@ def attachments_edit(request, id):
 
     return render_to_response('attachments/edit.html', RequestContext(request, {
         'form': form,
+        'subtitle': 'Edit attachments'
     }))
 

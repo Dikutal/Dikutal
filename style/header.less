@@ -9,7 +9,7 @@ body, #dikutal-header, #dikutal-header ol {
 
 #dikutal-header {
   width:100%;
-  line-height: 24px;
+  line-height: 30px;
   background-color: @menu_color_bg;
   color: @menu_color_text;
   font-family: sans-serif;
@@ -22,29 +22,32 @@ body, #dikutal-header, #dikutal-header ol {
     width: 950px;
   }
 
+  a#logo, a#logo:link, a#logo:visited, a#logo:hover {
+    text-decoration: none;
+    font-family: freemono, monospace;
+    font-style: italic;
+    font-size: 175%;
+    color: orange;
+    float: left;
+    margin: 0 10px 0 15px;
+  }
+
   ol {
     padding-right: 2em;
   }
 
   ol li {
-   display:inline;
+   display: inline;
    margin-left: 14px;
   }
 
   ol li a {
-   text-decoration:none;
+   text-decoration: none;
    color: @menu_color_text;
   }
 
   ol li a:hover {
     color: @menu_hover_color_text;
-  }
-
-  img#small-logo {
-    margin-left:15px;
-    margin-top:2px;
-    padding:0;
-    float:left;
   }
 
   .menu-right {

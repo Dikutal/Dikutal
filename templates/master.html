@@ -18,12 +18,12 @@
 <body>
   <div id="dikutal-header">
     <div class="container">
-      <a href="{% url frontpage %}"><img src="{% static "logo2012.png" %}" alt="" id="small-logo" /></a>
+      <a href="{% url frontpage %}" id="logo">Dikutal</a>
       <ol>
         <li {% if active_tab == "news" %}class="active"{% endif %}><a href="/news">Articles</a></li>
         <li {% if active_tab == "calendar" %}class="active"{% endif %}><a href="/calendar">Calendar</a></li>
         <li {% if active_tab == "jobs" %}class="active"{% endif %}><a href="/jobs">Jobs</a></li>
-        <li {% if active_tab == "planet" %}class="active"{% endif %}><a href="/planet">Blogs</a></li>
+        <li {% if active_tab == "blogs" %}class="active"{% endif %}><a href="/blogs">Blogs</a></li>
         <li {% block search_extra %}{% endblock search_extra %}{% if active_tab == "search" %}class="active"{% endif %}><a href="/search">Search</a></li>
         <li><a href="http://qa.dikutal.dk/">Q&amp;A</a></li>
         <li><a href="http://food.dikutal.dk/">Food</a></li>
@@ -34,7 +34,7 @@
         {% else %}
           <li class="menu-right"><a href="{% url django.contrib.auth.views.login %}">Log in</a></li>
         {% endif %}
-
+        <li {% if active_tab == "about" %}class="active"{% endif %}><a href="/about">About</a></li>
       </ol>
     </div>
   </div>

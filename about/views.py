@@ -12,4 +12,8 @@ from util.modtemplate import *
 about_template = mod_template('about/index.md', markdown)
 
 def index(request):
-    return HttpResponse(about_template.render(RequestContext(request, {})))
+    return HttpResponse(about_template.render(RequestContext(
+        request, {
+            'active_tab': 'about',
+            'subtitle': 'About'
+        })))

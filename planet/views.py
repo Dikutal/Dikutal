@@ -21,25 +21,27 @@ def index(request):
     for a in articles:
         a.html_short = shorten_html(a.html, HTML_SHORTEN_LENGTH)
     return render_to_response('planet/index.html', RequestContext(request, {
-            'articles': articles,
-            'active_tab':'planet',
-            }))
-
-@login_required
-@csrf_protect
-def planet_create(request):
-    if request.POST:
-        form = PlanetForm(request.POST, request.FILES)
-        if form.is_valid():
-            blog = form.save(commit=False)
-            blog.author = request.user
-            blog.published = datetime.now()
-            blog.save()
-            return redirect('/planet')
-    else:
-        form = PlanetForm()
-
-    return render_to_response('planet/create.html', RequestContext(request, {
-        'active_tab': 'planet',
-        'form': form,
+        'articles': articles,
+        'active_tab':'blogs',
+        'subtitle': 'Blogs'
     }))
+
+# @login_required
+# @csrf_protect
+# def planet_create(request):
+#     if request.POST:
+#         form = PlanetForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             blog = form.save(commit=False)
+#             blog.author = request.user
+#             blog.published = datetime.now()
+#             blog.save()
+#             return redirect('/planet')
+#     else:
+#         form = PlanetForm()
+
+#     return render_to_response('planet/create.html', RequestContext(request, {
+#         'active_tab': 'blogs',
+#         'subtitle': 'Add blog',
+#         'form': form,
+#     }))

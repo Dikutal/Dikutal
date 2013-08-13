@@ -26,9 +26,10 @@ def index(request):
     feed_job_list = get_feed_articles('job_feed_articles', JobFeed)
 
     return render_to_response('jobs/index.html', RequestContext(request, {
-            'active_tab': 'jobs',
-            'job_list': latest,
-            'feed_job_list': feed_job_list,
+        'active_tab': 'jobs',
+        'subtitle': 'Jobs',
+        'job_list': latest,
+        'feed_job_list': feed_job_list,
         }))
 
 @login_required
@@ -49,6 +50,7 @@ def create(request):
     return render_to_response('jobs/create.html', RequestContext(request, {
         'form': form,
         'active_tab': 'jobs',
+        'subtitle': 'Create job'
     }))
 
 
@@ -67,6 +69,7 @@ def create_company(request):
 
     return render_to_response('jobs/create-company.html', RequestContext(request, {
         'active_tab': 'jobs',
+        'subtitle': 'Create company',
         'form': form,
     }))
 
@@ -75,6 +78,7 @@ def jobs_view(request, id, slug):
     job = get_object_or_404(Job, pk=id)
     return render_to_response('jobs/detail.html', RequestContext(request, {
         'active_tab': 'jobs',
+        'subtitle': job.title,
         'job': job,
         'job_address': job.company.company_address or job.address,
         'show': job.is_shown(),
@@ -85,6 +89,7 @@ def companies_view(request, id):
     company = get_object_or_404(Company, pk=id)
     return render_to_response('jobs/company_detail.html', RequestContext(request, {
         'active_tab': 'jobs',
+        'subtitle': company.title,
         'company': company,
         'can_edit': company.can_edit(request.user),
     }))

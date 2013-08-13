@@ -63,5 +63,6 @@ from calendar import HTMLCalendar
 
 def index():
     return render_to_response('calendar/index.html', RequestContext(request, {
-        'active_tab': 'calendar'
+        'active_tab': 'calendar',
+        'subtitle': 'Calendar'
         }))
