@@ -10,6 +10,9 @@ from util.feedparsing import get_feed_articles
 from planet.forms import PlanetForm
 from django.utils.text import Truncator
 
+# How much to shorten the HTML when showing blog excerpts.
+HTML_SHORTEN_LENGTH = 100
+
 def shorten_html(h, length):
     return Truncator(h).words(length, html=True)
 

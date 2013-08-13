@@ -8,8 +8,6 @@
 
 {% block content %}
 
-<h1 class="dikutal-title">Dikutal</h1>
-
 <div style="float:left; width: 580px;">
     {% if feed_items %}
     <section id="frontpage-feed">
@@ -53,36 +51,57 @@
 </div>
 
 <div id="sidebar">
+
+  <section id="aboutbox" class="box">
+    <h3><span class="mpics">a</span> About Dikutal</h3>
+    <p>
+      Dikutal is the local news source for students at
+      DIKU. <a href='/about'>Learn more about Dikutal.</a>
+    </p>
+  </section>
   
-  <section  id="qabox" class="box">
+  <section id="qabox" class="box">
     <h3><span class="mpics">?</span> Latest Questions</h3>
+    {% if qa_items %}
     <ol>
     {% for q in qa_items %}
     <li><a href="{{ q.links.0.href }}">{{ q.title }}</a><span class="smalldate"> {{ q.date }}</span></li>
     {% endfor %}
     </ol>
+    {% else %}
+    No questions.
+    {% endif %}
     <div class="additional"> <a href="http://qa.dikutal.dk/">More questions »</a></div>
   </section>
 
-
+  <section id="jobbox" class="box">
+    <h3><span class="mpics">$</span> Latest Jobs</h3>
     {% if latest_jobs %}
-    <section id="jobbox" class="box">
-      <h3><span class="mpics">$</span> Latest Jobs</h3>
-        <ol>
-        {% for job in latest_jobs %}
-            <li><a href="/jobs/{{ job.id }}/">{{ job.title }}</a> <span class="smalldate">{{ job.published|date:"d. M Y" }}</span></li>
-        {% endfor %}
-        </ol>
-        <div class="additional"> <a href="/jobs">More jobs »</a></div>
-    </section>
+    <ol>
+    {% for job in latest_jobs %}
+      <li><a href="/jobs/{{ job.id }}/">{{ job.title }}</a> <span class="smalldate">{{ job.published|date:"d. M Y" }}</span></li>
+    {% endfor %}
+    </ol>
+    {% else %}
+    No jobs.
     {% endif %}
+    <div class="additional"> <a href="/jobs">More jobs »</a></div>
+  </section>
 
-    <section class="box">
-      <h3>About Dikutal</h3>
-      <p>
-        Dikutal is the local news source for students at
-        DIKU. <a href='/about'>Learn more about Dikutal.</a>
-      </p>
-    </section>
+  <section id="blogsbox" class="box">
+    <h3><span class="mpics">w</span> Latest Blogs</h3>
+    {% if latest_blog_articles %}
+    <ol>
+    {% for blog in latest_blog_articles %}
+      <li><a href="{{ blog.url }}">{{ blog.title }}</a> <span class="smalldate">{{ blog.published|date:"d. M Y" }}</span></li>
+    {% endfor %}
+    </ol>
+    {% else %}
+    No blog articles.
+    {% endif %}
+    <div class="additional"> <a href="/blogs">More blog articles »</a></div>
+  </section>
+
 </div>
+
 {% endblock content %}

@@ -1,15 +1,13 @@
 # Django settings for dikutal project.
 
-from os.path import dirname, join, realpath
 import sys
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Dikutals bestyrelse', 'dikutal@diku.dk'),
 )
-
 MANAGERS = ADMINS
 
 DATABASES = {
@@ -162,11 +160,9 @@ LOGGING = {
 
 DATETIME_FORMAT=r'j. N Y \a\t H:i'
 
-# The duration in which to keep the blog feeds cached.
-FEED_CACHE_DURATION = 10 * 60 * 24
-
-# How much to shorten the HTML when showing blog excerpts.
-HTML_SHORTEN_LENGTH = 100
+minutes = lambda min: min * 60 * 24
+# The duration in which to keep feeds cached.
+FEED_CACHE_DURATION = minutes(30)
 
 DATABASE_ROUTERS = []
 
