@@ -30,7 +30,7 @@ urlpatterns = patterns('',
     url(r'^jobs/', include('jobs.urls')),
     url(r'^news/', include('news.urls')),
     url(r'^artikler/', include('artikler.urls')), # for legacy links
-    url(r'^planet/', include('planet.urls')),
+    url(r'^blogs/', include('planet.urls')),
     url(r'^calendar/', include('dikucalendar.urls')),
     url(r'^attachments/', include('attachments.urls')),
     url(r'^search/', include('haystack.urls')),
