@@ -8,7 +8,7 @@ from datetime import date, datetime, timedelta
 from news.models import Article
 from calendar import HTMLCalendar
 
-# from util.datetime import *
+# from util.dt import *
 
 
 # class DIKUCalendar(HTMLCalendar):
