@@ -155,7 +155,7 @@ LOGGING = {
     }
 }
 
-DATETIME_FORMAT=r'j. N Y \a\t H:i'
+DATETIME_FORMAT=r'j. N Y H:i'
 
 minutes = lambda min: min * 60 * 24
 # The duration in which to keep feeds cached.

@@ -3,30 +3,36 @@
 {% load markup %}
 
 {% block content %}
+
+<h1 class='dikutal-title'>Jobs</h1>
+
+{% if user.is_authenticated %}
+<p><a href="/jobs/create">Add a job.</a></p>
+{% endif %}
+
 {% if job_list %}
-    <ul>
-    <table>
-    <td><b>Published</b></td>
-    <td><b>Title</b></td>
-    <td><b>Company</b></td>
-    <td><b>Deadline</b></td>
-    {% for job in job_list %}
-        <tr>
+    <table id='jobstable'>
+      <tr>
+        <th><b>Published</b></th>
+        <th><b>Title</b></th>
+        <th><b>Company</b></th>
+        <th><b>Deadline</b></th>
+      </tr>
+      {% for job in job_list %}
+      <tr>
         <td>{{ job.published|date:"d. M Y" }}</td>
         <td><a href="{{ job.id }}/">{{ job.title }}</a></td>
         <td>{{ job.company.company_name }}</td>
-        <td>{{ job.deadline|date:"d. M Y" }}</td>
-        </tr>
-    {% endfor %}
+        <td>{% if job.deadline %}{{ job.deadline|date:"d. M Y" }}{% else %}None{% endif %}</td>
+      </tr>
+      {% endfor %}
     </table>
-    {% for job in feed_job_list %}
-        <li><a href="/jobs/fromfeed_magic_id/">{{ job.title }}</a></li>
-    {% endfor %}
-    </ul>
+    <!-- <ul> -->
+    <!-- {% for job in feed_job_list %} -->
+    <!-- <li><a href="/jobs/fromfeed_magic_id/">{{ job.title }}</a></li> -->
+    <!-- {% endfor %} -->
+    <!-- </ul> -->
 {% else %}
     <p>No jobs are available.</p>
-{% endif %}
-{% if user.is_authenticated %}
-<p><a href="/jobs/create">Add a job</a>.</p>
 {% endif %}
 {% endblock content %}

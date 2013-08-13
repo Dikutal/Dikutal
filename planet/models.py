@@ -24,4 +24,3 @@ class PlanetFeedAdmin(admin.ModelAdmin):
         }),
         )
     list_display = ['title', 'url', 'owner']
-

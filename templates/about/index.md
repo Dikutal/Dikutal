@@ -20,6 +20,11 @@ Universitet.  Dikutal consists of several parts:
 We write most articles in English.
 
 
+## <a id="contact"></a>Contact
+
+Dikutal can be contacted at.
+
+
 ## Members
 
 Dikutal consists of:

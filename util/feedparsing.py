@@ -22,10 +22,15 @@ class FeedArticle(object):
              parsed = entry.updated_parsed
         except AttributeError:
              parsed = entry.published_parsed
-        self.updated = datetime.datetime.fromtimestamp(
-            time.mktime(parsed), dtz.utc)
-        self.updated += dtz.copenhagen.utcoffset(self.updated)
-        self.updated = self.updated.astimezone(dtz.copenhagen)
+        self.updated = datetime.datetime.fromtimestamp(time.mktime(parsed))
+
+
+        # Uncomment for timezone normalization
+        
+        # self.updated = datetime.datetime.fromtimestamp(
+        #     time.mktime(parsed), dtz.utc)
+        # self.updated += dtz.copenhagen.utcoffset(self.updated)
+        # self.updated = self.updated.astimezone(dtz.copenhagen)
 
 def get_feed_articles(cache_name, feed_obj):
     articles = []

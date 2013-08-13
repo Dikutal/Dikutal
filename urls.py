@@ -28,7 +28,7 @@ urlpatterns = patterns('',
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 
     url(r'^jobs/', include('jobs.urls')),
-    url(r'^news/', include('news.urls')),
+    url(r'^articles/', include('news.urls')),
     url(r'^artikler/', include('artikler.urls')), # for legacy links
     url(r'^blogs/', include('planet.urls')),
     url(r'^calendar/', include('dikucalendar.urls')),

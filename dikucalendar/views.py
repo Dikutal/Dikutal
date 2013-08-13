@@ -61,7 +61,7 @@ from calendar import HTMLCalendar
 #         'calendar': mark_safe(cal_html)
 #         }))
 
-def index():
+def index(request):
     return render_to_response('calendar/index.html', RequestContext(request, {
         'active_tab': 'calendar',
         'subtitle': 'Calendar'

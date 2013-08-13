@@ -2,13 +2,28 @@
 {% load extra_filters %}
 
 {% block content %}
-<p>(All times in Copenhagen time.)</p>
+
+<h1 class='dikutal-title'>Blogs</h1>
+
+<p>
+  This is a collection of blog entries from people at DIKU.
+</p>
+
+<p>
+  Do <em>you</em> make DIKU relevant blog
+  entries?  <a href="/about#contact">Send us an email</a> with a link to your
+  blog feed, and we might add it here.  Both Danish and English are okay.
+</p>
+
+<hr />
 
 <section id="planet-feed">
 {% for article in articles %}
 <article>
   <h2><a href='{{ article.url }}'>{{ article.title }}</a></h2>
-  <div class="smalldate">{{ article.feed.title }} &ndash; <time pubdate>{{ article.updated }}</time></div>
+  <div class="smalldate">{{ article.feed.title }} &ndash;
+    <time pubdate>{{ article.updated|date:'j. N Y H:i O' }}</time>
+  </div>
   <div class='planetarticle'>
     {{ article.html_short|safe }}
   </div>
