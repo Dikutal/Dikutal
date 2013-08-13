@@ -3,8 +3,8 @@ MARKDOWN = 'MD'
 HTML = 'HT'
 
 FORMATS = (
-    (TEXT, 'Plain text'),
     (MARKDOWN, 'Markdown'),
+    (TEXT, 'Plain text'),
     (HTML, 'HTML')
 )
 

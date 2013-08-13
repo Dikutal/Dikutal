@@ -9,8 +9,8 @@ from django.contrib.admin import widgets
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ('title', 'teaser', 'content', 'front_image',
-                  'event_start', 'event_end', 'event_location')
+        fields = ('title', 'teaser', 'content', 'language', 'front_image', 'content_format',
+                  'event_start', 'event_end')
     def __init__(self, *args, **kwargs):
         super(ArticleForm, self).__init__(*args, **kwargs)
         self.fields['front_image'].widget = widgets.RelatedFieldWidgetWrapper(

@@ -36,6 +36,8 @@
       <h3>Content</h3>
       <div>
         {% include 'snippets/forms_snippet.html' with field=form.content %}
+        {% include 'snippets/forms_snippet.html' with field=form.language %}
+        {% include 'snippets/forms_snippet.html' with field=form.content_format %}
         {% include 'snippets/forms_snippet.html' with field=form.front_image %}
       </div>
 

@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from attachments.models import Attachment
 import util.formats as formats
+import util.languages as languages
 from datetime import datetime
 
 
@@ -22,7 +23,8 @@ class Article(models.Model):
     front_image = models.ForeignKey(Attachment, null=True, blank=True)
     event_start = models.DateTimeField(null=True, blank=True)
     event_end = models.DateTimeField(null=True, blank=True)
-    event_location = models.CharField(max_length=100, null=True, blank=True)
+    language = models.CharField(
+        max_length=2, choices=languages.LANGUAGES, default=languages.DEFAULT)
 
     def __unicode__(self):
         return self.title
@@ -48,18 +50,18 @@ class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     fieldsets = (
         (None, {
-            'fields': ('title', 'author', 'teaser', 'content', 'content_format', 'front_image', 'published', 'slug')
+            'fields': ('title', 'author', 'teaser', 'content', 'language', 'content_format', 'front_image', 'published', 'slug')
         }),
         ('Event details', {
             'classes': ('collapse', ),
             'description': 'Articles with an event date will be showed in the calendar.',
-            'fields': ('event_start', 'event_end', 'event_location')
+            'fields': ('event_start', 'event_end')
         }),
         )
     actions = ['publish', 'unpublish']
-    list_display = ['title', 'slug', 'author', 'created', 'last_edited', 'is_published']
+    list_display = ['title', 'slug', 'author', 'language', 'created', 'last_edited', 'is_published']
     list_filter = ('author__username', 'published')
-    search_fields = ['title', 'author__username', 'teaser', 'content', 'event_location']
+    search_fields = ['title', 'author__username', 'teaser', 'content', 'language']
     
     def __init__(self, model, admin_site):
         super(ArticleAdmin, self).__init__(model, admin_site)
