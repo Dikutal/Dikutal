@@ -38,7 +38,9 @@
       {% elif article.content_format == 'MD' %}
       {{ article.content|markdown }}
       {% elif article.content_format == 'TX' %}
+      <pre>
       {{ article.content }}
+      </pre>
       {% endif %}
     </section>
 </article>
