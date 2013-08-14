@@ -7,6 +7,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'dikutal.settings'
 import django
 from news.models import Article
 import util.formats as formats
+import util.languages as languages
 
 # title: text
 # author: text
@@ -21,7 +22,8 @@ def import_legacy_article(title, author, teaser, content, published, slug):
                       content='<p><em>By %s</em></p>\n%s' % (author, content),
                       content_format=formats.HTML,
                       published=published,
-                      slug=slug)
+                      slug=slug,
+                      language=languages.DA)
     article.save()
 
 if __name__ == '__main__':
