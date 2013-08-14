@@ -8,13 +8,7 @@
 
 {% block content %}
 
-<div class="filters">
-  <p>Language:
-    <a href="/"{% if active_lang == 'all' %} class="active"{% endif %}>All</a>
-    <a href="/?lang=en"{% if active_lang == 'en' %} class="active"{% endif %}>English</a>
-    <a href="/?lang=da"{% if active_lang == 'da' %} class="active"{% endif %}>Danish</a>
-  </p>
-</div>
+{% include 'snippets/filter.html' %}
 
 <div style="float:left; width: 580px;">
     {% if feed_items %}
@@ -23,13 +17,8 @@
             {% for item in feed_items %}
             <article>
                 <div class="image">
-                  {% if item.content.front_image != None %}
-                  <img src="{{ item.content.front_image.file.url }}"
-                       alt="{{ item.content.front_image.description }}" height='90' width='120'>
-                  {% else %}
-                  <img src="{% static "placeholder-thumb.png" %}"
-                       alt="This article lacks a front page image." height='90' width='120'>
-                  {% endif %}
+                  <img src="{{ item.content.front_image_url }}"
+                       alt="{{ item.content.front_image_desc }}" height='90' width='120'>
                 </div>
             
                 <h2>

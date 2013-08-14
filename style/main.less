@@ -306,17 +306,29 @@ table td {
 
 .filters p {
   padding: 4px 9px;
+  position: relative;
 }
 
-.filters p a, .filters p a:link, .filters p a:visited, .filters p a:hover {
+.filters p a, .filters p a:link, .filters p a:visited {
   color: blue;
   text-decoration: none;
-  margin-left: 10px;
+  margin-left: 7em;
+  position: absolute;
+}
+
+.filters p a:hover {
+  color: darkblue;
 }
 
 .filters p a.active {
   font-weight: bold;
   color: black;
+}
+
+.actions p {
+  background-color: #FFD69C;
+  font-weight: bold;
+  padding: 5px;
 }
 
 

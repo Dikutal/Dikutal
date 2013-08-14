@@ -6,10 +6,10 @@ from jobs.models import Job
 from operator import itemgetter
 from django.core.cache import cache
 from planet.models import PlanetFeed
-from util.languages import *
 import datetime
 import feedparser
 from settings import *
+from util.languages import *
 
 
 # Number of Q&A questions to show on the front page
@@ -46,10 +46,8 @@ def get_blog_articles():
     articles = PlanetFeed.get_articles()[:NUM_BLOG_ARTICLES_INDEX]
     return articles
 
-def get_articles(lang):
-    articles = Article.objects.filter(published__lt=datetime.datetime.now())
-    articles = filter_with_lang(articles, lang)
-    articles = articles.order_by('-published')
+def get_latest_articles(lang):
+    articles = Article.get_articles(lang)
     content = [(a, datetime.datetime.now() - a.published) for a in articles]
     return [{'content': c} for (c, v) in sorted(content, key=itemgetter(1))][:NUM_ARTICLES_INDEX]
 
@@ -61,7 +59,7 @@ def index(request):
         'qa_items': get_qa_entries(),
         'latest_jobs': get_latest_jobs(lang),
         'latest_blog_articles': get_blog_articles(),
-        'feed_items': get_articles(lang),
+        'feed_items': get_latest_articles(lang),
         'subtitle': 'Home',
         'active_lang': lang
     }))

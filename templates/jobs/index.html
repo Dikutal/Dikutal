@@ -7,7 +7,9 @@
 <h1 class='dikutal-title'>Jobs</h1>
 
 {% if user.is_authenticated %}
-<p><a href="/jobs/create">Add a job.</a></p>
+<div class="actions">
+<p>You can <a href="/jobs/create">add a job.</a></p>
+</div>
 {% endif %}
 
 {% if job_list %}

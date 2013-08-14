@@ -7,12 +7,18 @@ from django.views.decorators.csrf import csrf_protect
 from news.forms import ArticleForm
 from news.models import Article
 from datetime import datetime
+from util.languages import *
+
 
 # Number of articles to show
 NUM_ARTICLES = 15
 
 def index(model, request):
-    articles = model.objects.filter(published__lt=datetime.now()).order_by('-published')
+    lang = request.GET.get('lang')
+    if not lang in lang_filter.keys():
+        lang = 'all'
+
+    articles = Article.get_articles(lang)
     paginator = Paginator(articles, NUM_ARTICLES)
 
     page = request.GET.get('page')
@@ -27,6 +33,7 @@ def index(model, request):
         'active_tab': 'articles',
         'subtitle': 'Articles',
         'latest': latest,
+        'active_lang': lang
     }))
 
 def view(model, request, id, slug):

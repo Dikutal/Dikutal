@@ -6,7 +6,7 @@ from attachments.models import Attachment
 from datetime import datetime
 import re
 import util.formats as formats
-import util.languages as languages
+from util.languages import *
 from util.misc import cached
 
 
@@ -25,7 +25,7 @@ class Article(models.Model):
     event_start = models.DateTimeField(null=True, blank=True)
     event_end = models.DateTimeField(null=True, blank=True)
     language = models.CharField(
-        max_length=2, choices=languages.LANGUAGES, default=languages.DEFAULT)
+        max_length=2, choices=LANGUAGES, default=DEFAULT)
 
     def __unicode__(self):
         return self.title
@@ -72,6 +72,13 @@ class Article(models.Model):
 
     def front_image_desc(self):
         return self.get_front_image_url()[1]
+
+    @staticmethod
+    def get_articles(lang=''):
+        articles = Article.objects.filter(published__lt=datetime.now())
+        articles = filter_with_lang(articles, lang)
+        articles = articles.order_by('-published')
+        return articles
 
 class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}

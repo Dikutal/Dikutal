@@ -7,6 +7,15 @@
 
 <h1 class='dikutal-title'>Articles</h1>
 
+{% if user.is_authenticated %}
+<div class="actions">
+<p>You can <a href="/articles/create">write an article.</a></p>
+</div>
+{% endif %}
+
+
+{% include 'snippets/filter.html' %}
+
 {% if latest %}
    <section id="frontpage-feed">
     {% for article in latest %}
@@ -55,7 +64,5 @@
 {% else %}
     <p>No articles.</p>
 {% endif %}
-{% if user.is_authenticated %}
-<p><a href="/news/create">Write an article</a>.</p>
-{% endif %}
+
 {% endblock content %}
