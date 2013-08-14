@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib import admin
-#from django.contrib.admin import BooleanFieldListFilter
 from django.contrib.auth.models import User
 from django.db.models import Q
 from attachments.models import Attachment
@@ -45,6 +44,9 @@ class Article(models.Model):
         return self.published is not None and self.published <= datetime.now()
     is_published.boolean = True
     is_published.admin_order_field = 'published'
+
+    def has_event(self):
+        return bool(self.event_start) or bool(self.event_end)
 
 class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}

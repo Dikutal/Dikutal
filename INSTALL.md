@@ -2,20 +2,23 @@
 
 * Python 2.7
 * The following Python modules:
-    * django (1.4.(3--5) guaranteed to work, probably all 1.4.* versions)
+    * markdown
+    * feedparser
+    * icalendar
+    * django 1.4.3+
     * django-south
     * django-haystack (version 2: [http://haystacksearch.org/]())
     * django-widget-tweaks
     * django-extensions
-    * markdown
-    * feedparser
+    * django-ical
 
 The Python modules can be installed with:
 
-    pip install django==1.4.5 south django-haystack==2 django-widget-tweaks django-extensions markdown feedparser
+    pip install markdown feedparser icalendar django==1.4.6 south \
+      django-haystack==2 django-widget-tweaks django-extensions django-ical
 
 
-# Installation
+# Setup
 
 0. Create "settings_local.py" from "settings_local_template.py"
 1. Run ./manage.py syncdb

@@ -53,7 +53,10 @@ def get_articles(lang):
     content = [(a, datetime.datetime.now() - a.published) for a in articles]
     return [{'content': c} for (c, v) in sorted(content, key=itemgetter(1))][:NUM_ARTICLES_INDEX]
 
-def index_generic(request, lang):
+def index(request):
+    lang = request.GET.get('lang')
+    if not lang in lang_filter.keys():
+        lang = 'all'
     return render_to_response('frontpage/index.html', RequestContext(request, {
         'qa_items': get_qa_entries(),
         'latest_jobs': get_latest_jobs(lang),
@@ -62,12 +65,3 @@ def index_generic(request, lang):
         'subtitle': 'Home',
         'active_lang': lang
     }))
-
-def index_da(request):
-    return index_generic(request, 'da')
-
-def index_en(request):
-    return index_generic(request, 'en')
-
-def index(request):
-    return index_generic(request, 'all')
