@@ -8,10 +8,12 @@ from news.forms import ArticleForm
 from news.models import Article
 from datetime import datetime
 
+# Number of articles to show
+NUM_ARTICLES = 15
 
 def index(model, request):
     articles = model.objects.filter(published__lt=datetime.now()).order_by('-published')
-    paginator = Paginator(articles, 10)
+    paginator = Paginator(articles, NUM_ARTICLES)
 
     page = request.GET.get('page')
     try:

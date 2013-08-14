@@ -23,15 +23,13 @@
             {% for item in feed_items %}
             <article>
                 <div class="image">
-                  {% if article.front_image %}
-                  <img src="/media/{{ article.front_image }}"
-                                           alt="{{ article.front_image.description }}" height='90' width='120'>
+                  {% if item.content.front_image != None %}
+                  <img src="{{ item.content.front_image.file.url }}"
+                       alt="{{ item.content.front_image.description }}" height='90' width='120'>
                   {% else %}
                   <img src="{% static "placeholder-thumb.png" %}"
-                                           alt="This article lacks a front page image." height='90' width='120'>
+                       alt="This article lacks a front page image." height='90' width='120'>
                   {% endif %}
-
-
                 </div>
             
                 <h2>
@@ -45,7 +43,6 @@
                     {% elif item.content.content_format == 'TX' %}
                     {{ item.content.teaser }}
                     {% endif %}
-
                 </div>
                 <footer>
                     <span class="smalldate">{{ item.content.author.get_full_name }} &ndash; <time pubdate>{{ item.content.published }}</time></span>

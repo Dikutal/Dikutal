@@ -3,9 +3,11 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db.models import Q
 from attachments.models import Attachment
+from datetime import datetime
+import re
 import util.formats as formats
 import util.languages as languages
-from datetime import datetime
+from util.misc import cached
 
 
 class Article(models.Model):
@@ -48,6 +50,29 @@ class Article(models.Model):
     def has_event(self):
         return bool(self.event_start) or bool(self.event_end)
 
+    def get_inline_images(self):
+        if self.content_format != formats.HTML:
+            return
+        urls = re.findall(r'<img .*?src="(.+?)".*?>', self.content)
+        return urls
+
+    # @cached(lambda self: 'front_image_' + self.url)
+    def get_front_image_url(self):
+        if self.front_image:
+            return (self.front_image.file.url,
+                    self.front_image.description)
+        else:
+            urls = self.get_inline_images()
+            if urls:
+                return (urls[0], 'Something')
+        return ('/static/placeholder-thumb.png', 'No front page image')
+
+    def front_image_url(self):
+        return self.get_front_image_url()[0]
+
+    def front_image_desc(self):
+        return self.get_front_image_url()[1]
+
 class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     fieldsets = (
@@ -79,3 +104,4 @@ class ArticleAdmin(admin.ModelAdmin):
 
     def unpublish(modeladmin, request, queryset):
         queryset.update(published=None)
+

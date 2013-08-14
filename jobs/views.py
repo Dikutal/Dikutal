@@ -9,11 +9,14 @@ from settings import *
 from util.feedparsing import get_feed_articles
 from jobs.forms import CompanyForm, JobForm
 
+# Number of jobs to show
+NUM_JOBS = 15
+
 def index(request):
     articles = Job.objects.filter(
         published__lt=datetime.now()).exclude(
         deadline__lt=datetime.now()).order_by('-published')
-    paginator = Paginator(articles, 10)
+    paginator = Paginator(articles, NUM_JOBS)
 
     page = request.GET.get('page')
     try:
