@@ -1,9 +1,3 @@
-{% extends "master.html" %}
-
-{% load markup %}
-
-{% block content %}
-
 # Dikutal 
 
 Dikutal is the local news source for students at Datalogisk Institut, Københavns
@@ -35,6 +29,3 @@ personer med billeder
 ## History
 
 Dikutal was founded in 2007.
-
-
-{% endblock content %}
