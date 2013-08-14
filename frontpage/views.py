@@ -6,6 +6,7 @@ from jobs.models import Job
 from operator import itemgetter
 from django.core.cache import cache
 from planet.models import PlanetFeed
+from util.languages import *
 import datetime
 import feedparser
 from settings import *
@@ -35,24 +36,38 @@ def get_qa_entries():
         i['date'] = d[5:7] + '.' + d[7:16]
     return items
 
-def get_latest_jobs():
-    jobs = Job.objects.filter(published__lt=datetime.datetime.now()).order_by('-published')[:NUM_JOBS_INDEX]
+def get_latest_jobs(lang):
+    jobs = Job.objects.filter(published__lt=datetime.datetime.now())
+    jobs = filter_with_lang(jobs, lang)
+    jobs = jobs.order_by('-published')[:NUM_JOBS_INDEX]
     return jobs
 
 def get_blog_articles():
     articles = PlanetFeed.get_articles()[:NUM_BLOG_ARTICLES_INDEX]
     return articles
 
-def get_articles():
-    articles = Article.objects.filter(published__lt=datetime.datetime.now()).order_by('-published')
+def get_articles(lang):
+    articles = Article.objects.filter(published__lt=datetime.datetime.now())
+    articles = filter_with_lang(articles, lang)
+    articles = articles.order_by('-published')
     content = [(a, datetime.datetime.now() - a.published) for a in articles]
     return [{'content': c} for (c, v) in sorted(content, key=itemgetter(1))][:NUM_ARTICLES_INDEX]
 
-def index(request):
+def index_generic(request, lang):
     return render_to_response('frontpage/index.html', RequestContext(request, {
         'qa_items': get_qa_entries(),
-        'latest_jobs': get_latest_jobs(),
+        'latest_jobs': get_latest_jobs(lang),
         'latest_blog_articles': get_blog_articles(),
-        'feed_items': get_articles(),
-        'subtitle': 'Home'
+        'feed_items': get_articles(lang),
+        'subtitle': 'Home',
+        'active_lang': lang
     }))
+
+def index_da(request):
+    return index_generic(request, 'da')
+
+def index_en(request):
+    return index_generic(request, 'en')
+
+def index(request):
+    return index_generic(request, 'all')
