@@ -1,8 +1,10 @@
 #!/bin/sh
 
-for app in news jobs planet attachments
+for app in attachments jobs news planet
 do
     echo "Migrating app $app..."
-    ./manage.py migrate $app && ./manage.py schemamigration $app --auto && ./manage.py migrate $app
+    ./manage.py migrate $app && \
+        ./manage.py schemamigration $app --auto && \
+        ./manage.py migrate $app
     echo "$app migrated."
 done
