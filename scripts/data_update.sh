@@ -4,4 +4,4 @@ set -e
 
 ./scripts/migrate_db.sh
 ./manage.py collectstatic
-service uwsgi reload
+./scripts/webserver_restart.sh

@@ -7,4 +7,5 @@ do
         ./manage.py schemamigration $app --auto && \
         ./manage.py migrate $app
     echo "$app migrated."
+    echo
 done
