@@ -2,7 +2,9 @@ from django.db import models
 from django.contrib import admin
 from datetime import datetime
 import util.formats as formats
+import util.languages as languages
 from django.contrib.auth.models import User
+from attachments.models import Attachment
 
 class Company(models.Model):
     # Company concact info
@@ -12,7 +14,7 @@ class Company(models.Model):
     company_email = models.CharField(max_length=100, blank=True)
     company_address = models.TextField(blank=True)
     company_phone = models.CharField(max_length=100, blank=True)
-
+    image = models.ForeignKey(Attachment, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, related_name='%(class)ss')
 
@@ -39,7 +41,7 @@ class CompanyAdmin(admin.ModelAdmin):
         (None, {
             'fields': ('author', 'company_name', 'company_address',
                        'company_description', 'company_contact',
-                       'company_email', 'company_phone')
+                       'company_email', 'company_phone', 'image')
         }),
     )
     list_display = ['company_name', 'company_contact', 'company_email', 'company_phone']
@@ -55,6 +57,8 @@ class Job(models.Model):
     published = models.DateTimeField(blank=True, null=True)
     last_edited = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    language = models.CharField(
+        max_length=2, choices=languages.LANGUAGES, default=languages.DEFAULT)
 
     slug = models.SlugField()
 
@@ -102,7 +106,7 @@ class JobAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('author', 'title', 'content', 'content_format', 'published', 'company', 'slug')
+            'fields': ('author', 'title', 'content', 'language', 'content_format', 'published', 'company', 'slug')
         }),
         ('Job info', {
             'description': "Application information for the job. Leave address out to use the company's address.",

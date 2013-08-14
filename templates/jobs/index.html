@@ -35,4 +35,17 @@
 {% else %}
     <p>No jobs are available.</p>
 {% endif %}
+
+<h2>Business parters</h2>
+
+<div id="partners">
+{% if partners %}
+{% for par in parters %}
+<a href="{{ par.url }}"><img src="{{ par.image.url }}" alt="{{ par.name }}" /></a>
+{% endfor %}
+{% else %}
+No business partners.
+{% endif %}
+</div>
+
 {% endblock content %}

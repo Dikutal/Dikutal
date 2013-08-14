@@ -30,6 +30,7 @@ def index(request):
         'subtitle': 'Jobs',
         'job_list': latest,
         'feed_job_list': feed_job_list,
+        'partners': []
         }))
 
 @login_required

@@ -8,7 +8,7 @@ from django.core.exceptions import ValidationError
 class JobForm(forms.ModelForm):
     class Meta:
         model = Job
-        fields = ('title', 'content', 'address', 'hours',
+        fields = ('title', 'content', 'language', 'content_format', 'address', 'hours',
                   'deadline', 'salary', 'company')
 
 # Maybe use RelatedFieldWidgetWrapper to add a '+' after the select box, like on
@@ -27,4 +27,4 @@ class CompanyForm(forms.ModelForm):
     class Meta:
         model = Company
         fields = ('company_name', 'company_description', 'company_contact',
-                  'company_email', 'company_address', 'company_phone')
+                  'company_email', 'company_address', 'company_phone', 'image')

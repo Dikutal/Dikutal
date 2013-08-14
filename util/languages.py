@@ -5,7 +5,7 @@ OTHER = '**'
 LANGUAGES = (
     (DANISH, 'Dansk'),
     (ENGLISH, 'English'),
-    (OTHER, 'Other'),
+    (OTHER, 'Other/Unspecified'),
 )
 
 DEFAULT = ENGLISH
