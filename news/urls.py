@@ -23,4 +23,5 @@ urlpatterns = patterns('news.views',
     (r'^edit/(?P<id>\d+)/', 'news_edit'),
     (r'^comments/', include('django.contrib.comments.urls')),
     (r'^feed/$', LatestArticles()),
+    (r'^ical/$', LatestArticlesIcal()),
 )

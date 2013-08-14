@@ -8,13 +8,15 @@
 
 {% block content %}
 
+<div class="filters">
+  <p>Language:
+    <a href="/"{% if active_lang == 'all' %} class="active"{% endif %}>All</a>
+    <a href="/en"{% if active_lang == 'en' %} class="active"{% endif %}>English</a>
+    <a href="/da"{% if active_lang == 'da' %} class="active"{% endif %}>Danish</a>
+  </p>
+</div>
+
 <div style="float:left; width: 580px;">
-      <div class="filters">
-        <p>Language:
-          <a href="/"{% if active_lang == 'all' %} class="active"{% endif %}>All</a>
-          <a href="/da"{% if active_lang == 'da' %} class="active"{% endif %}>Danish</a>
-          <a href="/en"{% if active_lang == 'en' %} class="active"{% endif %}>English</a></p>
-      </div>
     {% if feed_items %}
     <section id="frontpage-feed">
         <div>
@@ -54,6 +56,8 @@
         </div>
         <div class="additional additional-bottom"> <a href="/news">More articles »</a></div>
     </section>
+    {% else %}
+    No articles.
     {% endif %}
 </div>
 
