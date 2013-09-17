@@ -24,6 +24,8 @@
 {% endblock head_extra %}
 {% block content %}
 
+<h1 class='dikutal-title'>Create article</h1>
+
 <form method="post" enctype="multipart/form-data" action=".">  
   <div class="accordion">
       <h3>Presentation</h3>
@@ -33,12 +35,13 @@
         {% include 'snippets/forms_snippet.html' with field=form.teaser %}
       </div>
       
-      <h3>Content</h3>
+      <h3>Article</h3>
       <div>
         {% include 'snippets/forms_snippet.html' with field=form.content %}
         {% include 'snippets/forms_snippet.html' with field=form.language %}
         {% include 'snippets/forms_snippet.html' with field=form.content_format %}
         {% include 'snippets/forms_snippet.html' with field=form.front_image %}
+        <p>Note: Uploads (including images) are stored in "/media/uploads".</p>
       </div>
 
 

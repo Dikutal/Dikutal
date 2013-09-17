@@ -93,7 +93,7 @@ def companies_view(request, id):
     company = get_object_or_404(Company, pk=id)
     return render_to_response('jobs/company_detail.html', RequestContext(request, {
         'active_tab': 'jobs',
-        'subtitle': company.title,
+        'subtitle': company.company_name,
         'company': company,
         'can_edit': company.can_edit(request.user),
     }))
